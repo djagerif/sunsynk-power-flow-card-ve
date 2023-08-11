@@ -177,6 +177,7 @@ class SunsynkPowerFlowCard extends LitElement {
     const stateObj47 = this.hass.states[config.entities.aux_connected_status] || { state: 'on' };
     const stateObj48 = this.hass.states[config.entities.aux_load1] || { state: '0' };
     const stateObj49 = this.hass.states[config.entities.aux_load2] || { state: '0' };
+    const stateObj50 = this.hass.states[config.temp_unit] || { state: 'C' };
 
     //Set defaults 
     let invert_aux = config?.load?.invert_aux || 'no';
@@ -197,6 +198,7 @@ class SunsynkPowerFlowCard extends LitElement {
     let inverter_voltage =  config?.entities?.inverter_voltage_154 ? stateObj5.state : 0;
     let inverter_current =  config?.entities?.inverter_current_164 ? stateObj7.state : 0;
     let battery_voltage =  config?.entities?.battery_voltage_183 ? stateObj11.state : 0;
+    let temp_unit = config?.temp_unit ? stateObj50.state : 'C';
 
     let noness_dual_load = config?.grid?.additional_loads;
     if (noness_dual_load !== 'no' && noness_dual_load !== 'one' && noness_dual_load !== 'two') {
@@ -1040,7 +1042,7 @@ class SunsynkPowerFlowCard extends LitElement {
               <text id="pv4_current" x="142" y="150" class="st3 left-align" display="${config.show_solar === 'no' || !config.entities.pv4_current_116 || config.entities.pv4_current_116 === 'none' || config.solar.mppts === 'one' || config.solar.mppts === 'two' || config.solar.mppts === 'three' ? 'none' : ''}" fill="${solar_colour}" >${stateObj30.state ? stateObj30.state : '0'} A</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.battery_temp_182)}>
-              <text id="battery_temp_182" x="93.7" y="295" class="${config.entities.battery_temp_182 === 'none' ? 'st12' : 'st3 left-align'}" fill="${battery_colour}" display="${config?.entities?.battery_temp_182 ? '' : 'none'}" >${stateObj37.state ? stateObj37.state : ''}°</text>
+              <text id="battery_temp_182" x="93.7" y="295" class="${config.entities.battery_temp_182 === 'none' ? 'st12' : 'st3 left-align'}" fill="${battery_colour}" display="${config?.entities?.battery_temp_182 ? '' : 'none'}" >${stateObj37.state ? stateObj37.state : ''}°${temp_unit}</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.radiator_temp_91)}>
               <text id="ac_temp" x="${config?.solar?.mppts === 'four' ? "137" : "158"}"  y="${config?.solar?.mppts === 'four' ? "222" : "153"}" class="${config.entities.radiator_temp_91 === 'none' ? 'st12' : 'st3 left-align'}" fill="${inverter_colour}" display="${config?.entities?.radiator_temp_91 ? '' : 'none'}" >AC: ${stateObj39.state ? stateObj39.state : ''}°</text>
@@ -1323,7 +1325,7 @@ class SunsynkPowerFlowCard extends LitElement {
               <text id="pv4_current" x="372" y="94" class="st3 left-align" display="${config.show_solar === 'no' || !config.entities.pv4_current_116 || config.entities.pv4_current_116 === 'none' || config.solar.mppts === 'one' || config.solar.mppts === 'two' || config.solar.mppts === 'three' ? 'none' : ''}" fill="${solar_colour}" >${stateObj30.state ? stateObj30.state : '0'} A</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.battery_temp_182)}>
-              <text id="battery_temp_182" x="250" y="324.5" class="${config.entities.battery_temp_182 === 'none' ? 'st12' : 'st3 left-align'}" fill="${battery_colour}" display="${config?.entities?.battery_temp_182 ? '' : 'none'}" >${stateObj37.state ? stateObj37.state : ''}°</text>
+              <text id="battery_temp_182" x="250" y="324.5" class="${config.entities.battery_temp_182 === 'none' ? 'st12' : 'st3 left-align'}" fill="${battery_colour}" display="${config?.entities?.battery_temp_182 ? '' : 'none'}" >${stateObj37.state ? stateObj37.state : ''}°${temp_unit}</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.radiator_temp_91)}>
             <text id="ac_temp" x="173" y="168.2" class="${config.entities.radiator_temp_91 === 'none' ? 'st12' : 'st3 left-align'}" fill="${inverter_colour}" display="${config?.entities?.radiator_temp_91 ? '' : 'none'}" >AC: ${stateObj39.state ? stateObj39.state : ''}°</text>
