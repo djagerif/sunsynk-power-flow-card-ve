@@ -414,7 +414,7 @@ class SunsynkPowerFlowCard extends LitElement {
       case '0':
       case 'standby':
         inverterStateColour = 'blue';
-        inverterStateMsg = 'Off';  //Standby
+        inverterStateMsg = 'Off';  //'Standby';
         break;
       case '1':
       case 'selftest':
@@ -446,28 +446,32 @@ class SunsynkPowerFlowCard extends LitElement {
         inverterStateColour = 'green';
         inverterStateMsg = 'Float';
         break;
-      case '4':
+      case '6':
       case 'Storage':
         inverterStateColour = 'green';
         inverterStateMsg = 'Storage';
         break;
-      case '4':
+      case '7':
       case 'Equalize':
         inverterStateColour = 'green';
         inverterStateMsg = 'Equalize';
         break;
+      case '8':
       case 'Passthru':
         inverterStateColour = 'green';
         inverterStateMsg = 'Passthru';
         break;
+      case '9':
       case 'Inverting':
         inverterStateColour = 'green';
         inverterStateMsg = 'Inverting';
         break;
+      case '10':
       case 'Power Assist':
         inverterStateColour = 'green';
         inverterStateMsg = 'Power Assist';
         break;
+      case '11':
       case 'Power Supply':
         inverterStateColour = 'green';
         inverterStateMsg = 'Power Supply';
