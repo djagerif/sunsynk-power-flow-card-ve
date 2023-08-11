@@ -177,7 +177,6 @@ class SunsynkPowerFlowCard extends LitElement {
     const stateObj47 = this.hass.states[config.entities.aux_connected_status] || { state: 'on' };
     const stateObj48 = this.hass.states[config.entities.aux_load1] || { state: '0' };
     const stateObj49 = this.hass.states[config.entities.aux_load2] || { state: '0' };
-    const stateObj50 = this.hass.states[config.temp_unit] || { state: 'C' };
 
     //Set defaults 
     let invert_aux = config?.load?.invert_aux || 'no';
@@ -198,7 +197,7 @@ class SunsynkPowerFlowCard extends LitElement {
     let inverter_voltage =  config?.entities?.inverter_voltage_154 ? stateObj5.state : 0;
     let inverter_current =  config?.entities?.inverter_current_164 ? stateObj7.state : 0;
     let battery_voltage =  config?.entities?.battery_voltage_183 ? stateObj11.state : 0;
-    let temp_unit = config?.temp_unit ? stateObj50.state : 'C';
+    let temp_unit = config?.temp_unit || 'C';
 
     let noness_dual_load = config?.grid?.additional_loads;
     if (noness_dual_load !== 'no' && noness_dual_load !== 'one' && noness_dual_load !== 'two') {
