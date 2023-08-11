@@ -5,6 +5,14 @@ An animated Home Assistant card to emulate the power flow that's shown on the Su
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge)](https://github.com/hacs/integration) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/djagerif/sunsynk-power-flow-card-ve?style=for-the-badge) <a href="https://www.buymeacoffee.com/slipx" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="29" width="120"></a>
 
+## Updates
+* Added temperature unit, either `C` or `F`. Default `C`
+* For Victron system, change DC Temperature variable to show `Min SOC` in `%`
+* Replaced Sunsynk Inverter Status messages with Victron Inverter messages.
+
+## To Do !!!
+* Figure out how to make both systems work by using a `use_victron` line item. Default will be to Sunsynk.
+
 ## Features
 * Option to switch between two card styles: `lite` or `full`.
 * Animated power flow based on positive/negative/zero sensor values with configurable dynamic speed. (Supports inverted battery, AUX and grid power).
