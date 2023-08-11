@@ -414,7 +414,7 @@ class SunsynkPowerFlowCard extends LitElement {
       case '0':
       case 'standby':
         inverterStateColour = 'blue';
-        inverterStateMsg = 'Standby';
+        inverterStateMsg = 'Off';  //Standby
         break;
       case '1':
       case 'selftest':
