@@ -1,7 +1,7 @@
 import { LitElement, html, css, svg } from "https://unpkg.com/lit-element@2.0.1/lit-element.js?module";
-const SunsynkCardversion = '1.9.8';
+const SunsynkCardversion = '0.0.1';
 console.info(
-  `%c SUNSYNK-POWER-FLOW-CARD %c v${SunsynkCardversion} `,
+  `%c SUNSYNK-POWER-FLOW-CARD-VE %c v${SunsynkCardversion} `,
   'color: orange; font-weight: bold; background: black',
   'color: white; font-weight: bold; background: dimgray',
 );
@@ -1469,12 +1469,12 @@ class SunsynkPowerFlowCard extends LitElement {
   }
 }
 
-customElements.define('sunsynk-power-flow-card', SunsynkPowerFlowCard);
+customElements.define('sunsynk-power-flow-card-ve', SunsynkPowerFlowCard);
 customElements.define("sunsynk-power-flow-card-editor", SunsynkPowerFlowCardEditor);
 window.customCards = window.customCards || [];
 window.customCards.push({
-  type: "sunsynk-power-flow-card",
-  name: "Sunsynk Power Flow Card",
+  type: "sunsynk-power-flow-card-ve",
+  name: "Sunsynk Power Flow Card VE",
   preview: false, // Optional - defaults to false
   description: "A Home Assistant card to emulate the Sunsynk power flow that's shown on the Inverter screen", // Optional
 });
