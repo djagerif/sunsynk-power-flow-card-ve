@@ -418,24 +418,64 @@ class SunsynkPowerFlowCard extends LitElement {
         break;
       case '1':
       case 'selftest':
+      case 'Low Power':
         inverterStateColour = 'yellow';
-        inverterStateMsg = 'Selftest';
+        inverterStateMsg = 'Low Power';  //'Selftest';
         break;
       case '2':
       case 'normal':
       case 'ok':
-        inverterStateColour = 'green';
-        inverterStateMsg = 'Normal';
+      case 'Fault':
+        inverterStateColour = 'orange';
+        inverterStateMsg = 'Fault';  //'Normal';
         break;
       case '3':
       case 'alarm':
-        inverterStateColour = 'orange';
-        inverterStateMsg = 'Alarm';
+      case 'Bulk':
+        inverterStateColour = 'green';
+        inverterStateMsg = 'Bulk';  //'Alarm';
         break;
       case '4':
       case 'fault':
-        inverterStateColour = 'red';
-        inverterStateMsg = 'Fault';
+      case 'Absorption':
+        inverterStateColour = 'green';
+        inverterStateMsg = 'Absorption';  //'Fault';
+        break;
+      case '5':
+      case 'Float':
+        inverterStateColour = 'green';
+        inverterStateMsg = 'Float';
+        break;
+      case '4':
+      case 'Storage':
+        inverterStateColour = 'green';
+        inverterStateMsg = 'Storage';
+        break;
+      case '4':
+      case 'Equalize':
+        inverterStateColour = 'green';
+        inverterStateMsg = 'Equalize';
+        break;
+      case 'Passthru':
+        inverterStateColour = 'green';
+        inverterStateMsg = 'Passthru';
+        break;
+      case 'Inverting':
+        inverterStateColour = 'green';
+        inverterStateMsg = 'Inverting';
+        break;
+      case 'Power Assist':
+        inverterStateColour = 'green';
+        inverterStateMsg = 'Power Assist';
+        break;
+      case 'Power Supply':
+        inverterStateColour = 'green';
+        inverterStateMsg = 'Power Supply';
+        break;
+      case '252':
+      case 'normal':
+        inverterStateColour = 'green';
+        inverterStateMsg = 'Ext. Control';
         break;
       default:
         if (config?.entities?.inverter_status_59 === 'none' || !config?.entities?.inverter_status_59) {
