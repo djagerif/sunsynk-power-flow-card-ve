@@ -1,4 +1,4 @@
-# Sunsynk-Power-Flow-Card
+# Sunsynk-Power-Flow-Card-VE
 Forked from https://github.com/slipx06/sunsynk-power-flow-card to toy around a bit learning some JS.
 
 An animated Home Assistant card to emulate the power flow that's shown on the Sunsynk Inverter screen. You can use this for Deye as well as other Inverters as long as you have the required sensor data. See the [WIKI](https://github.com/slipx06/sunsynk-power-flow-card/wiki) for integration methods and examples.
