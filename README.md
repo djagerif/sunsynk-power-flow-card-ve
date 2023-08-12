@@ -222,6 +222,7 @@ See the [WIKI](https://github.com/slipx06/sunsynk-power-flow-card/wiki/Sensor-Ma
 |battery_temp_182:| Optional | `sensor.sunsynk_battery_temperature` | Battery Temperature (℃)|
 |radiator_temp_91:| Optional | `sensor.sunsynk_radiator_temperature` | Inverter AC Temperature (℃)|
 |dc_transformer_temp_90:| Optional | `sensor.sunsynk_dc_transformer_temperature` | Inverter DC Temperature (℃)|
+| | | `*When using Victron variables, this will display Min SOC in %`|
 |prog1_time:| Optional | `sensor.sunsynk_time_slot_1` | Program 1 start time (`HH:MM`)
 |prog1_capacity:| Optional | `number.sunsynk_system_mode_soc_time1` | Program 1 capacity (SOC) setting
 |prog1_charge:| Optional | `switch.sunsynk_system_mode_grid_charge_time1` | Program 1 charge options (`on/off`, `1/0`, `No Grid or Gen`)
