@@ -3,7 +3,7 @@ Forked from https://github.com/slipx06/sunsynk-power-flow-card to toy around a b
 
 An animated Home Assistant card to emulate the power flow that's shown on the Sunsynk Inverter screen. You can use this for Deye as well as other Inverters as long as you have the required sensor data. See the [WIKI](https://github.com/slipx06/sunsynk-power-flow-card/wiki) for integration methods and examples.
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge)](https://github.com/hacs/integration) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/djagerif/sunsynk-power-flow-card-ve?style=for-the-badge) ![GitHub release date](https://img.shields.io/github/release-date-pre/djagerif/sunsynk-power-flow-card-ve?style=for-the-badge) <a href="https://www.buymeacoffee.com/slipx" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="29" width="120"></a>
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge)](https://github.com/hacs/integration) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/djagerif/sunsynk-power-flow-card-ve?include_prereleases&label=pre-release&logo=github) ![GitHub release date](https://img.shields.io/github/release-date-pre/djagerif/sunsynk-power-flow-card-ve?style=for-the-badge)
 
 ## Updates
 * Added temperature unit, either `C` or `F`. Default `C`
