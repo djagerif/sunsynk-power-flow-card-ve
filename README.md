@@ -52,18 +52,18 @@ An animated Home Assistant card to emulate the power flow that's shown on the Su
 The card can be installed manually or via HACS
 
 ### Manual Installation
-1. Create a new directory under `www` and name it `sunsynk-power-flow-card` e.g www/sunsynk-power-flow-card/
+1. Create a new directory under `www` and name it `sunsynk-power-flow-card-ve` e.g www/sunsynk-power-flow-card-ve/
 2. Copy the `sunsynk-power-flow-card.js` into the directory
 3. Add the resource to your Dashboard. You can append the filename with a `?ver=x` and increment x each time you download a new version to force a reload and avoid using a cached version. It is also a good idea to clear your browser cache.
 
 ![image](https://user-images.githubusercontent.com/7227275/235441241-93ab0c7d-341d-428f-8ca8-60ec932dde2d.png)
 
 ### Installation using HACS
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge)](https://my.home-assistant.io/redirect/hacs_repository/?repository=sunsynk-power-flow-card&category=plugin&owner=slipx06)
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge)](https://my.home-assistant.io/redirect/hacs_repository/?repository=sunsynk-power-flow-card-ve&category=plugin&owner=djagerif)
 You can add to HACS as a Custom Repo
 
 ## Usage
-Add the `Custom: Sunsynk Power Flow Card` to your Dashboard view. 
+Add the `Custom: Sunsynk Power Flow Card VE` to your Dashboard view. 
 
 ![image](https://user-images.githubusercontent.com/7227275/235375690-65d17663-e117-4626-9151-1a41979a13b8.png)
 
@@ -73,7 +73,7 @@ The card can be configured through the following attributes:
 
 | Attribute | Requirement | Default |Description |
 | --- | --- | --- | --- |
-|type: | **Required** | `custom:sunsynk-power-flow-card`| The custom card |
+|type: | **Required** | `custom:sunsynk-power-flow-card-ve`| The custom card |
 |cardstyle: | **Required** | `lite` | Selects the card layout that is used  `lite or full` |
 |panel_mode:| Optional | `no` |Toggles panel mode removing any card height restrictions. For use with Panel(1 card) view types or grid layouts|
 |large_font:| Optional | `no` | Increases font size of sensor data `yes/no`|
@@ -84,6 +84,8 @@ The card can be configured through the following attributes:
 |solar: | Optional |See optonal [Solar](#solar) attributes below | List of solar attributes.  |
 |load: | Optional | See optional [Load](#load) attributes below|List of load attributes.  |
 |grid: | Optional | See optional [Grid](#grid) attributes below| List of grid attributes.  |
+|temp_unit: | Optional | `C` | Celsius(default) or Fahrenheit `C or F`  |
+|use_victron: | Optional | For future use to enable Victron-specific changes  |
 |entities:|**Required** |See required [Entities](#entities) attributes below | List of sensor entities. |
 
 ### Inverter
@@ -257,7 +259,7 @@ The modbus registers can be visualised on the `full` card below:
 #### Minimum Configuration (No Solar) #####
 
 ```yaml
-type: custom:sunsynk-power-flow-card
+type: custom:sunsynk-power-flow-card-ve
 cardstyle: full
 show_solar: 'no'
 battery:
@@ -274,7 +276,7 @@ entities:
 #### Minimum Configuration (Solar) #####
 
 ```yaml
-type: custom:sunsynk-power-flow-card
+type: custom:sunsynk-power-flow-card-ve
 cardstyle: full
 show_solar: 'yes'
 solar:
@@ -295,7 +297,7 @@ entities:
 #### Minimal Configuration (No Solar) #####
 
 ```yaml
-type: custom:sunsynk-power-flow-card
+type: custom:sunsynk-power-flow-card-ve
 cardstyle: full
 show_solar: 'no'
 battery:
@@ -318,7 +320,7 @@ entities:
 #### Minimal Configuration (Solar) #####
 
 ```yaml
-type: custom:sunsynk-power-flow-card
+type: custom:sunsynk-power-flow-card-ve
 cardstyle: full
 show_solar: 'yes'
 solar:
@@ -351,7 +353,7 @@ entities:
 #### Minimum Configuration (Solar + Daily Totals) #####
 
 ```yaml
-type: custom:sunsynk-power-flow-card
+type: custom:sunsynk-power-flow-card-ve
 cardstyle: full
 show_solar: 'yes'
 solar:
@@ -393,11 +395,12 @@ entities:
 #### Full Configuration (All Options) #####
 
 ```yaml
-type: custom:sunsynk-power-flow-card
+type: custom:sunsynk-power-flow-card-ve
 cardstyle: full
 panel_mode: 'no'
 large_font: 'no'
 show_solar: 'yes'
+temp_unit: 'C'
 inverter:
   modern: 'yes'
   colour: grey
