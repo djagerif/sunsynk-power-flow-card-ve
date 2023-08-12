@@ -7,11 +7,11 @@ An animated Home Assistant card to emulate the power flow that's shown on the Su
 
 ## Updates
 * Added temperature unit, either `C` or `F`. Default `C`
-* For Victron system, change DC Temperature variable to show `Min SOC` in `%`
+* For Victron systems, change DC Temperature variable to show `Min SOC` in `%`
 * Replaced Sunsynk Inverter Status messages with Victron Inverter messages.
 
 ## To Do !!!
-* Figure out how to make both systems work by using a `use_victron` line item. Default will be to Sunsynk.
+* Figure out how to make both systems work by using a EG. `use_victron: true|false` variable. Default will be to Sunsynk if not specified.
 
 ## Features
 * Option to switch between two card styles: `lite` or `full`.

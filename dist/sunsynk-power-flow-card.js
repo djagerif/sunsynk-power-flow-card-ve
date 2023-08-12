@@ -6,7 +6,7 @@ console.info(
   'color: white; font-weight: bold; background: dimgray',
 );
 
-class SunsynkPowerFlowCardEditor extends LitElement {
+class SunsynkPowerFlowCardVEEditor extends LitElement {
   setConfig(config) {
     this._config = config;
   }
@@ -21,7 +21,7 @@ class SunsynkPowerFlowCardEditor extends LitElement {
   }
 }
 
-class SunsynkPowerFlowCard extends LitElement {
+class SunsynkPowerFlowCardVE extends LitElement {
   static get styles() {
     return css`
       .container {
@@ -1514,12 +1514,12 @@ class SunsynkPowerFlowCard extends LitElement {
   }
 }
 
-customElements.define('sunsynk-power-flow-card-ve', SunsynkPowerFlowCard);
-customElements.define("sunsynk-power-flow-card-editor", SunsynkPowerFlowCardEditor);
+customElements.define('sunsynk-power-flow-card-ve', SunsynkPowerFlowCardVE);
+customElements.define("sunsynk-power-flow-card-ve-editor", SunsynkPowerFlowCardVEEditor);
 window.customCards = window.customCards || [];
 window.customCards.push({
   type: "sunsynk-power-flow-card-ve",
   name: "Sunsynk Power Flow Card VE",
   preview: false, // Optional - defaults to false
-  description: "A Home Assistant card to emulate the Sunsynk power flow that's shown on the Inverter screen", // Optional
+  description: "A Home Assistant card to emulate the Sunsynk power flow that's shown on the Inverter screen with some Victron Energy specific additions", // Optional
 });
