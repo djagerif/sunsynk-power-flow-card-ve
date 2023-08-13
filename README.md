@@ -89,7 +89,6 @@ The card can be configured through the following attributes:
 |load: | Optional | See optional [Load](#load) attributes below|List of load attributes.  |
 |grid: | Optional | See optional [Grid](#grid) attributes below| List of grid attributes.  |
 |temp_unit: | Optional | `C` | Celsius(default) or Fahrenheit `C or F`  |
-|use_victron: | Optional | For future use to enable Victron-specific changes  |
 |entities:|**Required** |See required [Entities](#entities) attributes below | List of sensor entities. |
 
 ### Inverter
@@ -98,7 +97,7 @@ The card can be configured through the following attributes:
 |modern:| Optional |`yes`| Changes the inverter image.|
 |colour:| Optional |`grey`| Changes the colour of the inverter. Hex codes (`'#66ff00'` etc) or names (`red`, `green`, `blue` etc) |
 |autarky:| Optional| `power`| Display autarky and ratio as a percentage using either realtime power or daily energy values. Set to `no` to hide (`energy/power/no`). <br />Autarky is the percentage of self sufficiency through Home Production. Ratio is the percentage of produced electricity used by the home. <br />It is calculated based on the formula below and borrowed from the [Power Distribution Card](https://github.com/JonahKr/power-distribution-card)  <br /><ul><li>Autarky in Percent = Home Production / Home Consumption </li><li>Ratio in Percent = Home Consumption / Home Production</li></ul>|
-
+|use_victron: | Optional | `false` | Enables Victron-specific inverter status messages. |
 
 ### Battery
 Note that the card will always display batter power as a positive number regardless of your sensor value. The animated dot will change direction depending on the charging or discharging state. The `invert_power` attribute can be used to reverse direction if needed by your sensor.
@@ -410,6 +409,7 @@ inverter:
   modern: 'yes'
   colour: grey
   autarky: 'power'
+  use_victron: 'false'
 battery:
   energy: 15960
   shutdown_soc: 20
