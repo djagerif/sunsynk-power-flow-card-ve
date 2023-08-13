@@ -13,6 +13,8 @@ An animated Home Assistant card to emulate the power flow that's shown on the Su
 
 ## To Do !!!
 * Figure out how to make both systems work by using a EG. `use_victron: true|false` variable. Default will be to Sunsynk if not specified.
+* Fix Aux Loads not changing color if Aux_status = 'no'.
+* Tweak height and layout to fit Aux_Loads nicely into frame with their icons.
 
 ## Features
 * Option to switch between two card styles: `lite` or `full`.
