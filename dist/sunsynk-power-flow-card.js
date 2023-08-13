@@ -198,7 +198,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
     let inverter_current =  config?.entities?.inverter_current_164 ? stateObj7.state : 0;
     let battery_voltage =  config?.entities?.battery_voltage_183 ? stateObj11.state : 0;
     let temp_unit = config?.temp_unit || 'C';
-    let use_victron = config?.use_victron || 'false';
+    let use_victron = config?.inverter?.use_victron || 'false';
 
     let noness_dual_load = config?.grid?.additional_loads;
     if (noness_dual_load !== 'no' && noness_dual_load !== 'one' && noness_dual_load !== 'two') {
