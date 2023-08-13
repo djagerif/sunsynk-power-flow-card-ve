@@ -22,7 +22,9 @@ An animated Home Assistant card to emulate the power flow that's shown on the Su
 * Animated power flow based on positive/negative/zero sensor values with configurable dynamic speed. (Supports inverted battery, AUX and grid power).
 * Dynamic battery image based on SOC (empty->low->medium->high). 
 * Grid connected status.
-* Inverter status (standby, normal, self-test, alarm, fault).  
+* Inverter status (standby, normal, self-test, alarm, fault).
+* When using `use_victron` variable the following messages are returned:
+  (Off, Low Power, Fault, Bulk, Absorption, Float, Storage, Equalize, Passthru, Inverting, Power Assist, Power Supply, Ext, Control)
 * Configurable battery size and shutdown SOC to calculate and display remaining battery runtime based on current battery usage and system time slot setting i.e. SOC, Grid Charge. Can be toggled off.
 * Daily Totals that can be toggled on or off.
 * Hide all solar data if not installed or specify number of mppts in use. Set custom MPPT labels. 
