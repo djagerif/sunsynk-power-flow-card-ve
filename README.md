@@ -9,12 +9,12 @@ An animated Home Assistant card to emulate the power flow that's shown on the Su
 * Added temperature unit (`temp_unit`), use either `C` or `F`. Default `C`
 * For Victron systems, change `dc_transformer_temp_90 variable` to show `Min SOC` in `%`
 * Replaced Sunsynk Inverter Status messages with Victron Inverter messages.
-* Added `connected` state check to `aux_connected` variable. It now accepts `on`, `1` and `connected`, all case insensitive.
+* Added `connected` state check to `aux_connected` variable. It now accepts `off|on`, `0|1` and `disconnected|connected`, all case insensitive.
 * AUX Loads entities can now be clicked to show more-info dialog
 * Move some objects and align a few values
 
 ## To Do !!!
-* Figure out how to make both systems work by using a EG. `use_victron: true|false` variable. Default will be to Sunsynk if not specified.
+* Figure out how to make both systems work by using a EG. `use_victron: true|false` variable. Default(`false`), or omitted, reverts to Sunsynk.
 * Fix Aux Load Icons not changing color if `Aux_status` = `no`.
 
 ## Features
