@@ -7,7 +7,7 @@ An animated Home Assistant card to emulate the power flow that's shown on the Su
 
 ## Updates
 * Added temperature unit, either `C` or `F`. Default `C`
-* For Victron systems, change DC Temperature variable to show `Min SOC` in `%`
+* For Victron systems, change `dc_transformer_temp_90 variable` to show `Min SOC` in `%`
 * Replaced Sunsynk Inverter Status messages with Victron Inverter messages.
 * Added `connected` state check to `aux_connected_` variable. It now reads `on`, `1` and `connected`.
 
