@@ -656,9 +656,12 @@ class SunsynkPowerFlowCardVE extends LitElement {
             <text id="ratiop_value" x="251" y="283" display="${useautarky === 'no' ? 'none' : ''}" class="${useautarky === 'power' ? 'st4 st8 left-align' : 'st12'}" fill="${inverter_colour}" >${Ratiop}%</text>
             <text id="autarky" x="212" y="295" display="${useautarky === 'no' ? 'none' : ''}" class="st3 left-align" fill="${inverter_colour}" >Autarky</text>
             <text id="ratio" x="251" y="295" display="${useautarky === 'no' ? 'none' : ''}" class="st3 left-align" fill="${inverter_colour}" >Ratio</text>
-            <text id="aux_load1" x="408" y="${additional_aux_load === 'one' ? '54' : '18'}" class="st3 st8" display="${show_aux === 'no' || additional_aux_load === 'no'  ? 'none' : ''}" fill="${ aux_status === 'on' || aux_status === '1' || aux_status.toLowerCase() === 'connected' ? `${aux_colour}` : `${aux_off_colour}`}" >${config?.load?.aux_load1_name ? `${config.load.aux_load1_name}` : '' }</text> 
-            
-            <text id="aux_load2" x="408" y="84" class="st3 st8" display="${show_aux === 'no' || additional_aux_load === 'no' || additional_aux_load === 'one'? 'none' : ''}" fill="${ aux_status === 'on' || aux_status === '1' || aux_status.toLowerCase() === 'connected' ? `${aux_colour}` : `${aux_off_colour}`}" >${config?.load?.aux_load2_name ? `${config.load.aux_load2_name}` : '' }</text> 
+            <text id="aux_load1" x="411" y="${additional_aux_load === 'one' ? '53' : '18'}" class="st3 st8" display="${show_aux === 'no' || additional_aux_load === 'no'  ? 'none' : ''}" fill="${aux_colour}" >${config?.load?.aux_load1_name ? `${config.load.aux_load1_name}` : '' }</text> 
+            <text id="aux_load2" x="411" y="84" class="st3 st8" display="${show_aux === 'no' || additional_aux_load === 'no' || additional_aux_load === 'one'? 'none' : ''}" fill="${ aux_colour}" >${config?.load?.aux_load2_name ? `${config.load.aux_load2_name}` : '' }</text> 
+            <text id="aux_load1_value" x="411" y="34" class="${font === 'no' ? 'st14' : 'st4'} st8" display="${show_aux === 'no' || additional_aux_load === 'no' ? 'none' : ''}" fill="${aux_colour}">${!isNaN(parseFloat(stateObj48.state)) ? parseFloat(stateObj48.state).toFixed(0) : '0'} W</text> 
+            <text id="aux_load2_value" x="411" y="64" class="${font === 'no' ? 'st14' : 'st4'} st8" display="${show_aux === 'no' || additional_aux_load === 'no' || additional_aux_load === 'one' ? 'none' : ''}" fill="${aux_colour}">${!isNaN(parseFloat(stateObj49.state)) ? parseFloat(stateObj49.state).toFixed(0) : '0'} W</text> 
+               
+            <circle id="standby" cx="164" cy="304" r="3.5" fill="${inverterStateColour}"/>
             
            
             
