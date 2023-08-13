@@ -14,7 +14,7 @@ An animated Home Assistant card to emulate the power flow that's shown on the Su
 * Move some objects and align a few values
 
 ## To Do !!!
-* Figure out how to make both systems work by using a EG. `use_victron: true|false` variable. Default(`false`), or omitted, reverts to Sunsynk.
+* Use a flag EG. `use_victron: true|false` variable to apply Victron-specific inverter status messages. Default(`false`), or omitted, reverts to Sunsynk.
 * Fix Aux Load Icons not changing color if `Aux_status` = `no`.
 
 ## Features
