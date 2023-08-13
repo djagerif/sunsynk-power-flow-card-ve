@@ -6,14 +6,14 @@ An animated Home Assistant card to emulate the power flow that's shown on the Su
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge)](https://github.com/hacs/integration) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/djagerif/sunsynk-power-flow-card-ve?include_prereleases&label=pre-release&style=for-the-badge) ![GitHub release date](https://img.shields.io/github/release-date-pre/djagerif/sunsynk-power-flow-card-ve?style=for-the-badge)
 
 ## Updates
-* Added temperature unit, either `C` or `F`. Default `C`
+* Added temperature unit (`temp_unit`), use either `C` or `F`. Default `C`
 * For Victron systems, change `dc_transformer_temp_90 variable` to show `Min SOC` in `%`
 * Replaced Sunsynk Inverter Status messages with Victron Inverter messages.
-* Added `connected` state check to `aux_connected_` variable. It now reads `on`, `1` and `connected`.
+* Added `connected` state check to `aux_connected` variable. It now accepts `on`, `1` and `connected`, all case insensitive.
 
 ## To Do !!!
 * Figure out how to make both systems work by using a EG. `use_victron: true|false` variable. Default will be to Sunsynk if not specified.
-* Fix Aux Loads not changing color if Aux_status = 'no'.
+* Fix Aux Loads not changing color if `Aux_status` = `no`.
 * Tweak height and layout to fit Aux_Loads nicely into frame with their icons.
 
 ## Features
