@@ -9,6 +9,7 @@ An animated Home Assistant card to emulate the power flow that's shown on the Su
 * Added temperature unit, either `C` or `F`. Default `C`
 * For Victron systems, change DC Temperature variable to show `Min SOC` in `%`
 * Replaced Sunsynk Inverter Status messages with Victron Inverter messages.
+* Added `connected` state check to `aux_connected_` variable. It now reads `on`, `1` and `connected`.
 
 ## To Do !!!
 * Figure out how to make both systems work by using a EG. `use_victron: true|false` variable. Default will be to Sunsynk if not specified.
@@ -217,7 +218,7 @@ See the [WIKI](https://github.com/slipx06/sunsynk-power-flow-card/wiki/Sensor-Ma
 |aux_power_166: | Optional | `sensor.sunsynk_aux_power` | Auxilary Power (W) |
 |aux_load1:| Optional |  | Sensor that contains the power of your AUX load 1 (W) |
 |aux_load2:| Optional |  | Sensor that contains the power of your AUX load 2 (W) |
-|aux_connected_status: |Optional | None | AUX Connected Status `on/off` or `1/0`
+|aux_connected_status: |Optional | None | AUX Connected Status `on/off`, `1/0` or `connected/disconnected` |
 |remaining_solar: | Optional | `sensor.solcast_forecast_remaining_today`| The remaining solar forecast for the day (kWh) |
 |battery_temp_182:| Optional | `sensor.sunsynk_battery_temperature` | Battery Temperature (℃)|
 |radiator_temp_91:| Optional | `sensor.sunsynk_radiator_temperature` | Inverter AC Temperature (℃)|

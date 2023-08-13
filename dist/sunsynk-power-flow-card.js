@@ -857,6 +857,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
               </g>
             </a>
 
+            
             <g display="${show_aux === 'no'  || additional_aux_load === 'no' ? 'none' : ''}" >
                 <foreignObject x="345" y="18" width="40" height="40" style="position: fixed; ">
                   <body xmlns="http://www.w3.org/1999/xhtml" >
