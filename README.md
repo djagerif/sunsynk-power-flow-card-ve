@@ -9,12 +9,12 @@ An animated Home Assistant card to emulate the power flow that's shown on the Su
 * Added temperature unit (`temp_unit`), use either `C` or `F`. Default `C`
 * For Victron systems, change `dc_transformer_temp_90 variable` to show `Min SOC` in `%`
 * Replaced Sunsynk Inverter Status messages with Victron Inverter messages.
-* Added `connected` state check to `aux_connected` variable. It now accepts `on`, `1` and `connected`, all case insensitive.
+* Added `connected` state check to `aux_connected` variable. It now accepts `off|on`, `0|1` and `disconnected|connected`, all case insensitive.
 * AUX Loads entities can now be clicked to show more-info dialog
 * Move some objects and align a few values
 
 ## To Do !!!
-* Figure out how to make both systems work by using a EG. `use_victron: true|false` variable. Default will be to Sunsynk if not specified.
+* Use a flag EG. `use_victron: true|false` variable to apply Victron-specific inverter status messages. Default(`false`), or omitted, reverts to Sunsynk.
 * Fix Aux Load Icons not changing color if `Aux_status` = `no`.
 
 ## Features
@@ -22,7 +22,9 @@ An animated Home Assistant card to emulate the power flow that's shown on the Su
 * Animated power flow based on positive/negative/zero sensor values with configurable dynamic speed. (Supports inverted battery, AUX and grid power).
 * Dynamic battery image based on SOC (empty->low->medium->high). 
 * Grid connected status.
-* Inverter status (standby, normal, self-test, alarm, fault).  
+* Inverter status (standby, normal, self-test, alarm, fault).
+* When using `use_victron` variable the following Inverter status messages are returned:
+  (Off, Low Power, Fault, Bulk, Absorption, Float, Storage, Equalize, Passthru, Inverting, Power Assist, Power Supply, Ext. Control)
 * Configurable battery size and shutdown SOC to calculate and display remaining battery runtime based on current battery usage and system time slot setting i.e. SOC, Grid Charge. Can be toggled off.
 * Daily Totals that can be toggled on or off.
 * Hide all solar data if not installed or specify number of mppts in use. Set custom MPPT labels. 
@@ -89,7 +91,6 @@ The card can be configured through the following attributes:
 |load: | Optional | See optional [Load](#load) attributes below|List of load attributes.  |
 |grid: | Optional | See optional [Grid](#grid) attributes below| List of grid attributes.  |
 |temp_unit: | Optional | `C` | Celsius(default) or Fahrenheit `C or F`  |
-|use_victron: | Optional | For future use to enable Victron-specific changes  |
 |entities:|**Required** |See required [Entities](#entities) attributes below | List of sensor entities. |
 
 ### Inverter
@@ -98,7 +99,7 @@ The card can be configured through the following attributes:
 |modern:| Optional |`yes`| Changes the inverter image.|
 |colour:| Optional |`grey`| Changes the colour of the inverter. Hex codes (`'#66ff00'` etc) or names (`red`, `green`, `blue` etc) |
 |autarky:| Optional| `power`| Display autarky and ratio as a percentage using either realtime power or daily energy values. Set to `no` to hide (`energy/power/no`). <br />Autarky is the percentage of self sufficiency through Home Production. Ratio is the percentage of produced electricity used by the home. <br />It is calculated based on the formula below and borrowed from the [Power Distribution Card](https://github.com/JonahKr/power-distribution-card)  <br /><ul><li>Autarky in Percent = Home Production / Home Consumption </li><li>Ratio in Percent = Home Consumption / Home Production</li></ul>|
-
+|use_victron: | Optional | `false` | Enables Victron-specific inverter status messages. |
 
 ### Battery
 Note that the card will always display batter power as a positive number regardless of your sensor value. The animated dot will change direction depending on the charging or discharging state. The `invert_power` attribute can be used to reverse direction if needed by your sensor.
@@ -355,7 +356,7 @@ entities:
   pv2_voltage_111: sensor.sunsynk_pv2_voltage
   pv2_current_112: sensor.sunsynk_pv2_current
 ```
-#### Minimum Configuration (Solar + Daily Totals) #####
+#### Minimal Configuration (Solar + Daily Totals) #####
 
 ```yaml
 type: custom:sunsynk-power-flow-card-ve
@@ -410,6 +411,7 @@ inverter:
   modern: 'yes'
   colour: grey
   autarky: 'power'
+  use_victron: 'false'
 battery:
   energy: 15960
   shutdown_soc: 20
@@ -439,6 +441,11 @@ load:
   aux_type: gen
   aux_colour: green
   aux_off_colour: red
+  aux_loads: two
+  aux_load1_name: Aux load 1
+  aux_load2_name: Aux load 2
+  aux_load1_icon: mdi:air-filter
+  aux_load2_icon: mdi:stove
   animation_speed: 8
   max_power: 8000
   additional_loads: two
@@ -504,6 +511,8 @@ entities:
   inverter_status_59: sensor.sunsynk_overall_state
   aux_power_166: sensor.sunsynk_aux_power
   aux_connected_status: binary_sensor.sunsynk_aux_connected_status
+  aux_load1: sensor.aux1_power
+  aux_load2: sensor.aux2_power
   remaining_solar: sensor.solcast_forecast_remaining_today
   battery_temp_182: sensor.sunsynk_battery_temperature
   radiator_temp_91: sensor.sunsynk_radiator_temperature
