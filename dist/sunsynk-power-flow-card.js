@@ -1115,7 +1115,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
               <text id="ac_temp" x="${config?.solar?.mppts === 'four' ? "137" : "158"}"  y="${config?.solar?.mppts === 'four' ? "222" : "153"}" class="${config.entities.radiator_temp_91 === 'none' ? 'st12' : 'st3 left-align'}" fill="${inverter_colour}" display="${config?.entities?.radiator_temp_91 ? '' : 'none'}" >AC: ${stateObj39.state ? stateObj39.state : ''}°</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.dc_transformer_temp_90)}>
-              <text id="dc_temp" x="90" y="266" class="${config.entities.dc_transformer_temp_90 === 'none' ? 'st12' : 'st3 left-align'}" fill="${inverter_colour}" display="${config?.entities?.dc_transformer_temp_90 ? '' : 'none'}" >Min SOC: ${stateObj38.state ? stateObj38.state : ''}%</text>
+              <text id="dc_temp" x="90" y="266" class="${config.entities.dc_transformer_temp_90 === 'none' ? 'st12' : 'st3 left-align'}" fill="${inverter_colour}" display="${config?.entities?.dc_transformer_temp_90 ? '' : 'none'}" >Min SOC: ${stateObj38.state ? Math.trunc(stateObj38.state) : ''}%</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.energy_cost)}>
               <text id="energy_cost" x="427" y="257"  class="${config.entities.energy_cost === 'none' ? 'st12' : 'st3 left-align'}" fill="${grid_colour}" display="${config?.entities?.energy_cost ? '' : 'none'}" >${stateObj43.state ? stateObj43.state : ''}</text>
@@ -1398,7 +1398,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
             <text id="ac_temp" x="173" y="168.2" class="${config.entities.radiator_temp_91 === 'none' ? 'st12' : 'st3 left-align'}" fill="${inverter_colour}" display="${config?.entities?.radiator_temp_91 ? '' : 'none'}" >AC: ${stateObj39.state ? stateObj39.state : ''}°</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.dc_transformer_temp_90)}>
-              <text id="dc_temp" x="173" y="180.4" class="${config.entities.dc_transformer_temp_90 === 'none' ? 'st12' : 'st3 left-align'}" fill="${inverter_colour}" display="${config?.entities?.dc_transformer_temp_90 ? '' : 'none'}" >Min SOC: ${stateObj38.state ? stateObj38.state : ''}%</text>
+              <text id="dc_temp" x="173" y="180.4" class="${config.entities.dc_transformer_temp_90 === 'none' ? 'st12' : 'st3 left-align'}" fill="${inverter_colour}" display="${config?.entities?.dc_transformer_temp_90 ? '' : 'none'}" >Min SOC: ${stateObj38.state ? Math.trunc(stateObj38.state) : ''}%</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.energy_cost)}>
               <text id="energy_cost" x="105" y="195" class="${config.entities.energy_cost === 'none' ? 'st12' : 'st3 left-align'}" fill="${grid_colour}" display="${config?.entities?.energy_cost ? '' : 'none'}" >${stateObj43.state ? stateObj43.state : ''}</text>
@@ -1459,8 +1459,8 @@ class SunsynkPowerFlowCardVE extends LitElement {
         if (config.battery.full_capacity < 80) {
           throw new Error('Full capacity needs to be between 80 and 100');
         }
-        if (config.battery.empty_capacity > 30) {
-          throw new Error('Empty capacity needs to be <= 30');
+        if (config.battery.empty_capacity > 50) {
+          throw new Error('Empty capacity needs to be <= 50');
         }
         if (config.battery.show_daily === 'yes' && (!config.entities.day_battery_charge_70 || !config.entities.day_battery_discharge_71) ) {  
           throw Error('Please include the day_battery_charge_70 and day_battery_discharge_71 attributes and entity IDs');
