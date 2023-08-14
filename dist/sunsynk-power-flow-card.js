@@ -1113,10 +1113,10 @@ class SunsynkPowerFlowCardVE extends LitElement {
               <text id="battery_temp_182" x="105.7" y="295" class="${config.entities.battery_temp_182 === 'none' ? 'st12' : 'st3 left-align'}" fill="${battery_colour}" display="${config?.entities?.battery_temp_182 ? '' : 'none'}" >${stateObj37.state ? stateObj37.state : ''}°${temp_unit}</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.radiator_temp_91)}>
-              <text id="ac_temp" x="${config?.solar?.mppts === 'four' ? "137" : "158"}"  y="${config?.solar?.mppts === 'four' ? "222" : "153"}" class="${config.entities.radiator_temp_91 === 'none' ? 'st12' : 'st3 left-align'}" fill="${inverter_colour}" display="${config?.entities?.radiator_temp_91 ? '' : 'none'}" >AC: ${stateObj39.state ? stateObj39.state : ''}°</text>
+              <text id="ac_temp" x="${config?.solar?.mppts === 'four' ? "137" : "158"}"  y="${config?.solar?.mppts === 'four' ? "222" : "153"}" class="${config.entities.radiator_temp_91 === 'none' ? 'st12' : 'st3 left-align'}" fill="${inverter_colour}" display="${config?.entities?.radiator_temp_91 ? '' : 'none'}" >AC: ${stateObj39.state ? stateObj39.state : ''}°${temp_unit}</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.dc_transformer_temp_90)}>
-              <text id="dc_temp" x="90" y="266" class="${config.entities.dc_transformer_temp_90 === 'none' ? 'st12' : 'st3 left-align'}" fill="${inverter_colour}" display="${config?.entities?.dc_transformer_temp_90 ? '' : 'none'}" >Min SOC: ${stateObj38.state ? Math.trunc(stateObj38.state) : ''}%</text>
+              <text id="dc_temp" x="${use_victron === 'true' ? '88' : '108'}" y="266" class="${config.entities.dc_transformer_temp_90 === 'none' ? 'st12' : 'st15 left-align'}" fill="${inverter_colour}" display="${config?.entities?.dc_transformer_temp_90 ? '' : 'none'}" >${use_victron === 'true' ? 'Min SOC' : 'DC'}: ${stateObj38.state ? Math.trunc(stateObj38.state) : ''}${use_victron === 'true' ? '%' : '°'+temp_unit}</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.energy_cost)}>
               <text id="energy_cost" x="427" y="257"  class="${config.entities.energy_cost === 'none' ? 'st12' : 'st3 left-align'}" fill="${grid_colour}" display="${config?.entities?.energy_cost ? '' : 'none'}" >${stateObj43.state ? stateObj43.state : ''}</text>
@@ -1396,10 +1396,10 @@ class SunsynkPowerFlowCardVE extends LitElement {
               <text id="battery_temp_182" x="250" y="324.5" class="${config.entities.battery_temp_182 === 'none' ? 'st12' : 'st3 left-align'}" fill="${battery_colour}" display="${config?.entities?.battery_temp_182 ? '' : 'none'}" >${stateObj37.state ? stateObj37.state : ''}°${temp_unit}</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.radiator_temp_91)}>
-            <text id="ac_temp" x="173" y="168.2" class="${config.entities.radiator_temp_91 === 'none' ? 'st12' : 'st3 left-align'}" fill="${inverter_colour}" display="${config?.entities?.radiator_temp_91 ? '' : 'none'}" >AC: ${stateObj39.state ? stateObj39.state : ''}°</text>
+            <text id="ac_temp" x="173" y="168.2" class="${config.entities.radiator_temp_91 === 'none' ? 'st12' : 'st3 left-align'}" fill="${inverter_colour}" display="${config?.entities?.radiator_temp_91 ? '' : 'none'}" >AC: ${stateObj39.state ? stateObj39.state : ''}°${temp_unit}</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.dc_transformer_temp_90)}>
-              <text id="dc_temp" x="173" y="180.4" class="${config.entities.dc_transformer_temp_90 === 'none' ? 'st12' : 'st3 left-align'}" fill="${inverter_colour}" display="${config?.entities?.dc_transformer_temp_90 ? '' : 'none'}" >Min SOC: ${stateObj38.state ? Math.trunc(stateObj38.state) : ''}%</text>
+              <text id="dc_temp" x="${use_victron === 'true' ? '153' : '173'}" y="180.4" class="${config.entities.dc_transformer_temp_90 === 'none' ? 'st12' : 'st15 left-align'}" fill="${inverter_colour}" display="${config?.entities?.dc_transformer_temp_90 ? '' : 'none'}" >${use_victron === 'true' ? 'Min SOC' : 'DC'}: ${stateObj38.state ? Math.trunc(stateObj38.state) : ''}${use_victron === 'true' ? '%' : '°'+temp_unit}</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.energy_cost)}>
               <text id="energy_cost" x="105" y="195" class="${config.entities.energy_cost === 'none' ? 'st12' : 'st3 left-align'}" fill="${grid_colour}" display="${config?.entities?.energy_cost ? '' : 'none'}" >${stateObj43.state ? stateObj43.state : ''}</text>
