@@ -13,6 +13,7 @@ An animated Home Assistant card to emulate the power flow that's shown on the Su
 * AUX Loads entities can now be clicked to show more-info dialog
 * Move some objects and align a few values
 * Raised selectable `Battery Empty` restriction from `30%` to `50%` for Lead-Acid batteries.
+* Added `(Incl. AUX)` text to `DAILY LOAD` for clarity when AUX sensor is configured.
 
 ## To Do !!!
 * Fix Aux Load Icons not changing color if `Aux_status` = `no`.
