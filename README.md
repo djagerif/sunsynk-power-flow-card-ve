@@ -8,14 +8,13 @@ An animated Home Assistant card to emulate the power flow that's shown on the Su
 ## Updates
 * Added temperature unit (`temp_unit`), use either `C` or `F`. Default `C`
 * For Victron systems, use `dc_transformer_temp_90 variable` to show `Min SOC` in `%`. Displayed as Integer value only.
-* Replaced Sunsynk Inverter Status messages with Victron Inverter messages.
+* Replaced Sunsynk Inverter Status messages with Victron Inverter messages when using the `use_victron` inverter variable.
 * Added `connected` state check to `aux_connected` variable. It now accepts `off|on`, `0|1` and `disconnected|connected`, all case insensitive.
 * AUX Loads entities can now be clicked to show more-info dialog
 * Move some objects and align a few values
 * Raised selectable `Battery Empty` restriction from `30%` to `50%` for Lead-Acid batteries.
 
 ## To Do !!!
-* Use a flag EG. `use_victron: true|false` variable to apply Victron-specific inverter status messages. Default(`false`), or omitted, reverts to Sunsynk.
 * Fix Aux Load Icons not changing color if `Aux_status` = `no`.
 
 ## Features

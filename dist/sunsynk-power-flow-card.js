@@ -1,5 +1,5 @@
 import { LitElement, html, css, svg } from "https://unpkg.com/lit-element@2.0.1/lit-element.js?module";
-const SunsynkCardversion = '0.0.3';
+const SunsynkCardversion = '0.0.4';
 console.info(
   `%c SUNSYNK-POWER-FLOW-CARD-VE %c v${SunsynkCardversion} `,
   'color: orange; font-weight: bold; background: black',
@@ -415,72 +415,96 @@ class SunsynkPowerFlowCardVE extends LitElement {
       case '0':
       case 'standby':
         inverterStateColour = 'blue';
-        inverterStateMsg = 'Off';  //'Standby';
+        //inverterStateMsg = 'Off';  //'Standby';
+        inverterStateMsg = (use_victron === 'true') ? 'Off' : 'Standby';
         break;
       case '1':
       case 'selftest':
       case 'Low Power':
-        inverterStateColour = 'yellow';
-        inverterStateMsg = 'Low Power';  //'Selftest';
+        //inverterStateColour = 'yellow';
+        //inverterStateMsg = 'Low Power';  //'Selftest';
+        inverterStateColour = (use_victron === 'true') ? 'green' : 'yellow';
+        inverterStateMsg = (use_victron === 'true') ? 'Low Power' : 'Selftest';
         break;
       case '2':
       case 'normal':
       case 'ok':
       case 'Fault':
-        inverterStateColour = 'orange';
-        inverterStateMsg = 'Fault';  //'Normal';
+        //inverterStateColour = 'orange';
+        //inverterStateMsg = 'Fault';  //'Normal';
+        inverterStateColour = (use_victron === 'true') ? 'orange' : 'green';
+        inverterStateMsg = (use_victron === 'true') ? 'Fault' : 'Normal';
         break;
       case '3':
       case 'alarm':
       case 'Bulk':
-        inverterStateColour = 'green';
-        inverterStateMsg = 'Bulk';  //'Alarm';
+        inverterStateColour = (use_victron === 'true') ? 'green' : 'orange';
+        inverterStateMsg = (use_victron === 'true') ? 'Bulk' : 'Alarm';
+        //inverterStateMsg = 'Bulk';  //'Alarm';
         break;
       case '4':
       case 'fault':
       case 'Absorption':
-        inverterStateColour = 'green';
-        inverterStateMsg = 'Absorption';  //'Fault';
+        //inverterStateColour = 'green';
+        //inverterStateMsg = 'Absorption';  //'Fault';
+        inverterStateColour = (use_victron === 'true') ? 'green' : 'red';
+        inverterStateMsg = (use_victron === 'true') ? 'Absorption' : 'Fault';
         break;
       case '5':
       case 'Float':
-        inverterStateColour = 'green';
-        inverterStateMsg = 'Float';
+        //inverterStateColour = 'green';
+        //inverterStateMsg = 'Float';
+        inverterStateColour = (use_victron === 'true') ? 'green' : '';
+        inverterStateMsg = (use_victron === 'true') ? 'Float' : '';
         break;
       case '6':
       case 'Storage':
-        inverterStateColour = 'green';
-        inverterStateMsg = 'Storage';
+        //inverterStateColour = 'green';
+        //inverterStateMsg = 'Storage';
+        inverterStateColour = (use_victron === 'true') ? 'green' : '';
+        inverterStateMsg = (use_victron === 'true') ? 'Storage' : '';
         break;
       case '7':
       case 'Equalize':
-        inverterStateColour = 'green';
-        inverterStateMsg = 'Equalize';
+        //inverterStateColour = 'green';
+        //inverterStateMsg = 'Equalize';
+        inverterStateColour = (use_victron === 'true') ? 'green' : '';
+        inverterStateMsg = (use_victron === 'true') ? 'Equalize' : '';
         break;
       case '8':
       case 'Passthru':
-        inverterStateColour = 'green';
-        inverterStateMsg = 'Passthru';
+        //inverterStateColour = 'green';
+        //inverterStateMsg = 'Passthru';
+        inverterStateColour = (use_victron === 'true') ? 'green' : '';
+        inverterStateMsg = (use_victron === 'true') ? 'Passthru' : '';
         break;
       case '9':
       case 'Inverting':
-        inverterStateColour = 'green';
-        inverterStateMsg = 'Inverting';
+        //inverterStateColour = 'green';
+        //inverterStateMsg = 'Inverting';
+        inverterStateColour = (use_victron === 'true') ? 'green' : '';
+        inverterStateMsg = (use_victron === 'true') ? 'Inverting' : '';
         break;
       case '10':
       case 'Power Assist':
-        inverterStateColour = 'green';
-        inverterStateMsg = 'Power Assist';
+        //inverterStateColour = 'green';
+        //inverterStateMsg = 'Power Assist';
+        inverterStateColour = (use_victron === 'true') ? 'green' : '';
+        inverterStateMsg = (use_victron === 'true') ? 'Power Assist' : '';
         break;
       case '11':
       case 'Power Supply':
-        inverterStateColour = 'green';
-        inverterStateMsg = 'Power Supply';
+        //inverterStateColour = 'green';
+        //inverterStateMsg = 'Power Supply';
+        inverterStateColour = (use_victron === 'true') ? 'green' : '';
+        inverterStateMsg = (use_victron === 'true') ? 'Power Supply' : '';
         break;
       case '252':
       case 'normal':
-        inverterStateColour = 'green';
-        inverterStateMsg = 'Ext. Control';
+        //inverterStateColour = 'green';
+        //inverterStateMsg = 'Ext. Control';
+        inverterStateColour = (use_victron === 'true') ? 'green' : '';
+        inverterStateMsg = (use_victron === 'true') ? 'Ext. Control' : '';
         break;
       default:
         if (config?.entities?.inverter_status_59 === 'none' || !config?.entities?.inverter_status_59) {
