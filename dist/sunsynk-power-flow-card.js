@@ -595,6 +595,11 @@ class SunsynkPowerFlowCardVE extends LitElement {
           --mdc-icon-size: 24px;
         }
         
+        .aux-small-off-icon {
+          color: ${aux_off_colour} !important;
+          --mdc-icon-size: 24px;
+        }
+
         .aux-off-icon {
           color: ${aux_off_colour} !important;
           --mdc-icon-size: 70px;
@@ -890,7 +895,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
                 <foreignObject x="375" y="5" width="85" height="85" style="position: fixed; ">
                   <body xmlns="http://www.w3.org/1999/xhtml" >
                     <div style="position: fixed; ">
-                      <ha-icon icon="${aux_type}" class="aux-icon"></ha-icon>
+                      <ha-icon icon="${aux_type}" class="${ aux_status === 'on' || aux_status === '1' || aux_status.toLowerCase() === 'connected' ? `aux-icon` : `aux-off-icon`}"></ha-icon>
                     </div>
                   </body>
                 </foreignObject>
@@ -902,7 +907,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
                 <foreignObject x="345" y="17" width="40" height="40" style="position: fixed; ">
                   <body xmlns="http://www.w3.org/1999/xhtml" >
                     <div style="position: fixed; ">
-                      <ha-icon icon="${aux_load1_icon}" class="aux-small-icon"></ha-icon>
+                      <ha-icon icon="${aux_load1_icon}" class="${ aux_status === 'on' || aux_status === '1' || aux_status.toLowerCase() === 'connected' ? `aux-small-icon` : `aux-small-off-icon`}"></ha-icon>
                     </div>
                   </body>
                 </foreignObject>
@@ -912,7 +917,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
               <foreignObject x="345" y="52" width="40" height="40" style="position: fixed; ">
                 <body xmlns="http://www.w3.org/1999/xhtml" >
                   <div style="position: fixed; ">
-                    <ha-icon icon="${aux_load2_icon}" class="aux-small-icon"></ha-icon>
+                    <ha-icon icon="${aux_load2_icon}" class="${ aux_status === 'on' || aux_status === '1' || aux_status.toLowerCase() === 'connected' ? `aux-small-icon` : `aux-small-off-icon`}"></ha-icon>
                   </div>
                 </body>
               </foreignObject>
