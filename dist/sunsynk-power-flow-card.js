@@ -1384,10 +1384,10 @@ class SunsynkPowerFlowCardVE extends LitElement {
               <text id="battery_voltage_183" x="193" y="346" display="${config.entities.battery_voltage_183 === 'none' || !config.entities.battery_voltage_183 ? 'none' : ''}" fill=${battery_colour} class="${font === 'no' ? 'st14' : 'st4'} st8">${battery_voltage} V</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.battery_soc_184)}>
-              <text id="battery_soc_184" x="290" y="358" display="${config.entities.battery_soc_184 === 'none' ? 'none' : ''}" fill=${battery_colour} class="st13 st8 left-align">${parseInt(stateObj12.state) ? parseInt(stateObj12.state) : '0'} %</text>
+              <text id="battery_soc_184" x="290" y="358" display="${config.entities.battery_soc_184 === 'none' ? 'none' : ''}" fill="${parseInt(stateObj12.state) > parseInt(config.battery.shutdown_soc) ? battery_colour : battery_warn_colour}" class="st13 st8 left-align">${parseInt(stateObj12.state) ? parseInt(stateObj12.state) : '0'} %</text>
             </a> 
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.battery_soc_184)}>
-              <text id="battery_soc_184" x="355" y="358" fill=${battery_colour} class="st13 st8 left-align" display="${inverter_prog.show === 'no' || config.entities.battery_soc_184 === 'none' ? 'none' : ''}"> | ${inverter_prog.capacity ? inverter_prog.capacity : '0'} %</text>
+              <text id="battery_soc_184" x="355" y="358" fill="${parseInt(stateObj12.state) > parseInt(config.battery.shutdown_soc) ? battery_colour : battery_warn_colour}" class="st13 st8 left-align" display="${inverter_prog.show === 'no' || config.entities.battery_soc_184 === 'none' ? 'none' : ''}"> | ${inverter_prog.capacity ? inverter_prog.capacity : '0'} %</text>
             </a>  
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.battery_power_190)}>
               <text id="battery_power_190" x="193" y="386" display="${config.entities.battery_power_190 === 'none' ? 'none' : ''}" fill=${battery_colour} class="${font === 'no' ? 'st14' : 'st4'} st8">${battery_power < '0' ? battery_power *-1 : battery_power} W</text>
