@@ -6,8 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ## [1.0.1]
 ### Added
-- Commands to allow setting of timeprop parameters (#19310)
-- Variables ``%power<1..28>%`` and  ``%switch<1..28>%`` to rules (#19331)
+- Added `battery_warn_colour` variable to the battery section. Allows colour change when SOC drops below Shutdown SOC
 
 ### Breaking Changed
 
