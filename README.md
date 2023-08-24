@@ -109,6 +109,7 @@ Note that the card will always display battery power as a positive number regard
 |shutdown_soc: | **Required** | `20` |The battery shutdown percentage used to calculate remaining runtime |
 |invert_power:| Optional | `no`|Set to `yes` if your sensor provides a positive number for battery charge and negative number for battery discharge|
 |colour:| Optional| `pink`| Changes the colour of all the battery card objects. Hex codes (`'#66ff00'` etc) or names (`red`, `green`, `blue` etc) |
+|warn_colour:| Optional| `default battery colour`| Changes the colour of the battery symbol when SOC drops to below Shutdown SOC. Hex codes (`'#66ff00'` etc) or names (`red`, `green`, `blue` etc) |
 |show_daily: | Optional| `no` | Toggles the Daily Total (`yes/no`) |  
 |animation_speed: | Optional | `6` | Set slowest animation speed in seconds, depending on Power draw | 
 |max_power: | Optional | `4500` | Maximun Power draw to calculate animation speed |
