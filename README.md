@@ -12,7 +12,7 @@ An animated Home Assistant card to emulate the power flow that's shown on the Su
 * Added `connected` state check to `aux_connected` variable. It now accepts `off|on`, `0|1` and `disconnected|connected`, all case insensitive.
 * AUX Loads entities can now be clicked to show more-info dialog
 * Move some objects and align a few values
-* Raised selectable `Battery Empty` restriction from `30%` to `50%` for Lead-Acid batteries.
+* Raised selectable `Battery Empty` restriction from `30%` to `80%` for Lead-Acid batteries.
 * Added `(Incl. AUX)` text to `DAILY LOAD` for clarity when AUX sensor is configured.
 * Aux Load Icons change colour according to the AUX connected state.
 
