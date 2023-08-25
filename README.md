@@ -114,7 +114,7 @@ Note that the card will always display battery power as a positive number regard
 |animation_speed: | Optional | `6` | Set slowest animation speed in seconds, depending on Power draw | 
 |max_power: | Optional | `4500` | Maximun Power draw to calculate animation speed |
 |full_capacity: | Optional| `80` | If SOC >= to this value the Fully Charged battery image will be shown. Accepts any value between 80-100|
-|empty_capacity: | Optional | `30` | If SOC <= to this value the Empty battery image will be shown. Accepts any value between 1-50
+|empty_capacity: | Optional | `30` | If SOC <= to this value the Empty battery image will be shown. Accepts any value between 1-80
 
 ### Solar
 These attributes are only needed if `show_solar` is set to `yes` 
