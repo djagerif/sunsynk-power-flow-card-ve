@@ -199,6 +199,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
     let battery_voltage =  config?.entities?.battery_voltage_183 ? stateObj11.state : 0;
     let temp_unit = config?.temp_unit || 'C';
     let use_victron = config?.inverter?.use_victron || 'false';
+    let aux_entity = config?.entities?.aux_power_166 || 'none';
 
     let noness_dual_load = config?.grid?.additional_loads;
     if (noness_dual_load !== 'no' && noness_dual_load !== 'one' && noness_dual_load !== 'two') {
@@ -665,8 +666,8 @@ class SunsynkPowerFlowCardVE extends LitElement {
 
             
 
-            <text id="daily_load_aux" x="${ additional_aux_load === 'two' ? '238' : '306'}" y="95" class="st3 left-align" fill="${load_showdaily === 'no' || show_aux === 'no' ? 'transparent' : `${load_colour}`}" >DAILY LOAD${config.entities.aux_power_166 === 'none' ? '' : '(Incl. AUX)'}</text>
-            <text id="daily_load" x="${additional_load === 'no' ? '377' : '306'}" y="${additional_load === 'no' ? '71' : '93'}" class="st3 left-align" fill="${load_showdaily === 'no' || show_aux === 'yes' ? 'transparent' : `${load_colour}`}" >DAILY LOAD${config.entities.aux_power_166 === 'none' ? '' : '(Incl. AUX)'}</text>
+            <text id="daily_load_aux" x="${ additional_aux_load === 'two' ? '238' : '306'}" y="95" class="st3 left-align" fill="${load_showdaily === 'no' || show_aux === 'no' ? 'transparent' : `${load_colour}`}" >DAILY LOAD${config.entities.aux_power_166  === 'none' || aux_entity === 'none' ? '' : '(Incl. AUX)'}</text>
+            <text id="daily_load" x="${additional_load === 'no' ? '377' : '306'}" y="${additional_load === 'no' ? '71' : '93'}" class="st3 left-align" fill="${load_showdaily === 'no' || show_aux === 'yes' ? 'transparent' : `${load_colour}`}" >DAILY LOAD${config.entities.aux_power_166 === 'none' || aux_entity === 'none' ? '' : '(Incl. AUX)'}</text>
             <text id="daily_solar" x="43.5" y="29" class="st3 left-align" fill="${solar_showdaily === 'no' || config.show_solar === 'no' || remaining_solar != 'false' ? 'transparent' : `${solar_colour}`}" >DAILY SOLAR</text>
             <text id="remaining_solar" x="43.5" y="29" class="st3 left-align" fill="${solar_showdaily === 'no' || config.show_solar === 'no' || remaining_solar === 'false' ? 'transparent' : `${solar_colour}`}" >DAILY SOLAR / LEFT TODAY</text>
             <text id="daily_bat_charge" x="4.5" y="251" class="st3 left-align"  fill="${battery_showdaily === 'no' ? 'transparent' : `${battery_colour}`}" >DAILY CHARGE</text>
@@ -1186,7 +1187,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
             <text id="floating" x="290" y="393.7" class="st3 left-align" fill="${config.battery.energy === 'hidden' || float === 'False' ? 'transparent' : `${battery_colour}`}" >BATTERY FLOATING</text>
             <text id="daily_bat_charge" x="77.2" y="357.2" class="st3 left-align"  fill="${battery_showdaily === 'no' ? 'transparent' : `${battery_colour}`}"  >DAILY CHARGE</text>
             <text id="daily_bat_dischcharge" x="77.2" y="393.7" class="st3 left-align"  fill="${battery_showdaily === 'no' ? 'transparent' : `${battery_colour}`}" >DAILY DISCHARGE</text>
-            <text id="daily_load" x="${additional_load === 'two' ? '365' : '415'}" y="${additional_load === 'two' ? '182.2' : '282.1'}" class="st3 left-align" fill="${load_showdaily === 'no' ? 'transparent' : `${load_colour}`}" >DAILY LOAD${config.entities.aux_power_166 === 'none' ? '' : '(Incl. AUX)'}</text>
+            <text id="daily_load" x="${additional_load === 'two' ? '365' : '415'}" y="${additional_load === 'two' ? '182.2' : '282.1'}" class="st3 left-align" fill="${load_showdaily === 'no' ? 'transparent' : `${load_colour}`}" >DAILY LOAD${config.entities.aux_power_166 === 'none' || aux_entity === 'none' ? '' : '(Incl. AUX)'}</text>
             <text id="daily_grid_buy" x="5" y="282.1" class="st3 left-align" fill="${grid_showdailybuy === 'no' ? 'transparent' : `${grid_colour}`}" >DAILY GRID BUY</text>
             <text id="daily_grid_sell" x="5" y="179" class="st3 left-align" fill="${grid_showdailysell === 'no' ? 'transparent' : `${grid_colour}`}" >DAILY GRID SELL</text>
             <text id="daily_solar" x="200" y="40" class="st3 left-align" fill="${solar_showdaily === 'no' || config.show_solar === 'no' || remaining_solar != 'false' ? 'transparent' : `${solar_colour}`}">DAILY SOLAR</text>
