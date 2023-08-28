@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 - `empty_capacity` minimum value raised from 50% to 80% to better support Lead Acid batteries
 
 ### Fixed
+- Replaced missing font CSS Style entry for font-size 10.
 
 ### Removed
 

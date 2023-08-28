@@ -60,7 +60,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
       .st12{display:none;}
       .st13{font-size:22px;}
       .st14{font-size:12px;}
-
+      .st15{font-size:10px;}
     `;
   }
 
