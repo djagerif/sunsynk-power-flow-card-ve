@@ -200,7 +200,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
     let temp_unit = config?.temp_unit || 'C';
     let use_victron = config?.inverter?.use_victron || 'false';
     let aux_entity = config?.entities?.aux_power_166 || 'none';
-    let tail_current = config?.battery?.tail_current || '2';
+    let tail_a = config?.battery?.tail_current || '2';
 
     let noness_dual_load = config?.grid?.additional_loads;
     if (noness_dual_load !== 'no' && noness_dual_load !== 'one' && noness_dual_load !== 'two') {
@@ -410,7 +410,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
     
     let float = 'false'
     if (use_victron === 'true') {
-      float = (-(parseFloat(tail_current)) <= parseFloat(stateObj35.state)) && (parseFloat(stateObj35.state) <= parseFloat(tail_current)) && (parseFloat(stateObj12.state) >= 99) && parseInt(stateObj21.state) === 4 ? "True" : "False";
+      float = (-(parseFloat(tail_a)) <= parseFloat(stateObj35.state)) && (parseFloat(stateObj35.state) <= parseFloat(tail_a)) && (parseFloat(stateObj12.state) >= 99) && parseInt(stateObj21.state) === 4 ? "True" : "False";
     } else {
       float = (-2 <= parseFloat(stateObj35.state)) && (parseFloat(stateObj35.state) <= 2) && (parseInt(stateObj12.state) >= 99) ? "True" : "False";
     }
