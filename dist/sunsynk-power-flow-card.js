@@ -412,7 +412,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
     if (use_victron === 'true') {
       float = (-(parseFloat(tail_a)) <= parseFloat(stateObj35.state)) && (parseFloat(stateObj35.state) <= parseFloat(tail_a)) && (parseFloat(stateObj12.state) >= 99) && parseInt(stateObj21.state) === 4 ? "True" : "False";
     } else {
-      float = (-2 <= parseFloat(stateObj35.state)) && (parseFloat(stateObj35.state) <= 2) && (parseInt(stateObj12.state) >= 99) ? "True" : "False";
+      float = (-(parseFloat(tail_a)) <= parseFloat(stateObj35.state)) && (parseFloat(stateObj35.state) <= parseFloat(tail_a)) && (parseInt(stateObj12.state) >= 99) ? "True" : "False";
     }
     //let float = (-2 <= parseInt(stateObj35.state)) && (parseInt(stateObj35.state) <= 2) && (parseInt(stateObj12.state) >= 99) ? "True" : "False";
     
