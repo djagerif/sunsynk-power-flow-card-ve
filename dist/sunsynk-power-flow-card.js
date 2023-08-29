@@ -200,6 +200,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
     let temp_unit = config?.temp_unit || 'C';
     let use_victron = config?.inverter?.use_victron || 'false';
     let aux_entity = config?.entities?.aux_power_166 || 'none';
+    let tail_current = config?.battery?.tail_current || '2';
 
     let noness_dual_load = config?.grid?.additional_loads;
     if (noness_dual_load !== 'no' && noness_dual_load !== 'one' && noness_dual_load !== 'two') {
@@ -407,7 +408,13 @@ class SunsynkPowerFlowCardVE extends LitElement {
       duration += `${minutes} min`;
     }
     
-    let float = (-2 <= parseInt(stateObj35.state)) && (parseInt(stateObj35.state) <= 2) && (parseInt(stateObj12.state) >= 99) ? "True" : "False";
+    let float = 'false'
+    if (use_victron === 'true') {
+      float = (-(parseFloat(tail_current)) <= parseFloat(stateObj35.state)) && (parseFloat(stateObj35.state) <= parseFloat(tail_current)) && (parseFloat(stateObj12.state) >= 99) && parseInt(stateObj21.state) === 4 ? "True" : "False";
+    } else {
+      float = (-2 <= parseFloat(stateObj35.state)) && (parseFloat(stateObj35.state) <= 2) && (parseInt(stateObj12.state) >= 99) ? "True" : "False";
+    }
+    //let float = (-2 <= parseInt(stateObj35.state)) && (parseInt(stateObj35.state) <= 2) && (parseInt(stateObj12.state) >= 99) ? "True" : "False";
     
     //Set Inverter Status Message and dot
     let inverterStateColour = "";
@@ -1491,8 +1498,14 @@ class SunsynkPowerFlowCardVE extends LitElement {
         if (config.battery.full_capacity < 80) {
           throw new Error('Full capacity needs to be between 80 and 100');
         }
-        if (config.battery.empty_capacity > 50) {
-          throw new Error('Empty capacity needs to be <= 50');
+        if (config.battery.tail_current < 1) {
+          throw new Error('Tail Current needs to be >= 1');
+        }
+        if (config.battery.tail_current > 20) {
+          throw new Error('Tail Current needs to be <= 20');
+        }
+        if (config.battery.empty_capacity > 80) {
+          throw new Error('Empty capacity needs to be <= 80');
         }
         if (config.battery.show_daily === 'yes' && (!config.entities.day_battery_charge_70 || !config.entities.day_battery_discharge_71) ) {  
           throw Error('Please include the day_battery_charge_70 and day_battery_discharge_71 attributes and entity IDs');

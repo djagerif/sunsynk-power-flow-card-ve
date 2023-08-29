@@ -101,7 +101,9 @@ The card can be configured through the following attributes:
 |use_victron: | Optional | `false` | Enables Victron-specific inverter status messages. |
 
 ### Battery
-Note that the card will always display battery power as a positive number regardless of your sensor value. The animated dot will change direction depending on the charging or discharging state. The `invert_power` attribute can be used to reverse direction if needed by your sensor.
+Note: This card will always display battery power as a positive number regardless of your sensor value. The animated dot will change direction depending on the charging or discharging state. The `invert_power` attribute can be used to reverse direction if needed by your sensor.
+
+Note: `tail_current` looks is only active when `use_victron` flag is set and works in conjunction with the Inverter `Absorbtion` state.
 
 | Attribute | Requirement |Default | Description |
 | --- | --- | --- |--- |
@@ -115,6 +117,7 @@ Note that the card will always display battery power as a positive number regard
 |max_power: | Optional | `4500` | Maximun Power draw to calculate animation speed |
 |full_capacity: | Optional| `80` | If SOC >= to this value the Fully Charged battery image will be shown. Accepts any value between 80-100|
 |empty_capacity: | Optional | `30` | If SOC <= to this value the Empty battery image will be shown. Accepts any value between 1-80
+|tail_current: | Optional | `2` | Used in conjunction with `use_victron` flag. Set battery current, in A, that indicates when to indicate Float. Accepts any value between 1-20
 
 ### Solar
 These attributes are only needed if `show_solar` is set to `yes` 
