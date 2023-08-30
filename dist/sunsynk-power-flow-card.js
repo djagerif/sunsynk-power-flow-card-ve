@@ -410,7 +410,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
     
     let float = 'false'
     if (use_victron === 'true') {
-      float = (-(parseFloat(tail_a)) <= parseFloat(stateObj35.state)) && (parseFloat(stateObj35.state) <= parseFloat(tail_a)) && (parseFloat(stateObj12.state) >= 99) && parseInt(stateObj21.state) === 4 ? "True" : "False";
+      float = (-(parseFloat(tail_a)) <= parseFloat(stateObj35.state)) && (parseFloat(stateObj35.state) <= parseFloat(tail_a)) && (parseFloat(stateObj12.state) >= 99) && (parseInt(stateObj21.state) === 4 || (stateObj21.state).toLowerCase() === 'absorption') ? "True" : "False";
     } else {
       float = (-(parseFloat(tail_a)) <= parseFloat(stateObj35.state)) && (parseFloat(stateObj35.state) <= parseFloat(tail_a)) && (parseInt(stateObj12.state) >= 99) ? "True" : "False";
     }
@@ -420,7 +420,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
     let inverterStateColour = "";
     let inverterStateMsg = "";
 
-    switch (stateObj21.state) {
+    switch ((stateObj21.state).toLowerCase()) {
       case '0':
       case 'standby':
         inverterStateColour = 'blue';
@@ -429,7 +429,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
         break;
       case '1':
       case 'selftest':
-      case 'Low Power':
+      case 'low power':
         //inverterStateColour = 'yellow';
         //inverterStateMsg = 'Low Power';  //'Selftest';
         inverterStateColour = (use_victron === 'true') ? 'green' : 'yellow';
@@ -438,7 +438,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
       case '2':
       case 'normal':
       case 'ok':
-      case 'Fault':
+      case 'fault':
         //inverterStateColour = 'orange';
         //inverterStateMsg = 'Fault';  //'Normal';
         inverterStateColour = (use_victron === 'true') ? 'orange' : 'green';
@@ -446,63 +446,63 @@ class SunsynkPowerFlowCardVE extends LitElement {
         break;
       case '3':
       case 'alarm':
-      case 'Bulk':
+      case 'bulk':
         inverterStateColour = (use_victron === 'true') ? 'green' : 'orange';
         inverterStateMsg = (use_victron === 'true') ? 'Bulk' : 'Alarm';
         //inverterStateMsg = 'Bulk';  //'Alarm';
         break;
       case '4':
       case 'fault':
-      case 'Absorption':
+      case 'absorption':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Absorption';  //'Fault';
         inverterStateColour = (use_victron === 'true') ? 'green' : 'red';
         inverterStateMsg = (use_victron === 'true') ? 'Absorption' : 'Fault';
         break;
       case '5':
-      case 'Float':
+      case 'float':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Float';
         inverterStateColour = (use_victron === 'true') ? 'green' : '';
         inverterStateMsg = (use_victron === 'true') ? 'Float' : '';
         break;
       case '6':
-      case 'Storage':
+      case 'storage':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Storage';
         inverterStateColour = (use_victron === 'true') ? 'green' : '';
         inverterStateMsg = (use_victron === 'true') ? 'Storage' : '';
         break;
       case '7':
-      case 'Equalize':
+      case 'equalize':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Equalize';
         inverterStateColour = (use_victron === 'true') ? 'green' : '';
         inverterStateMsg = (use_victron === 'true') ? 'Equalize' : '';
         break;
       case '8':
-      case 'Passthru':
+      case 'passthru':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Passthru';
         inverterStateColour = (use_victron === 'true') ? 'green' : '';
         inverterStateMsg = (use_victron === 'true') ? 'Passthru' : '';
         break;
       case '9':
-      case 'Inverting':
+      case 'inverting':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Inverting';
         inverterStateColour = (use_victron === 'true') ? 'green' : '';
         inverterStateMsg = (use_victron === 'true') ? 'Inverting' : '';
         break;
       case '10':
-      case 'Power Assist':
+      case 'power assist':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Power Assist';
         inverterStateColour = (use_victron === 'true') ? 'green' : '';
         inverterStateMsg = (use_victron === 'true') ? 'Power Assist' : '';
         break;
       case '11':
-      case 'Power Supply':
+      case 'power supply':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Power Supply';
         inverterStateColour = (use_victron === 'true') ? 'green' : '';
