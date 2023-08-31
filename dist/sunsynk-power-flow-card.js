@@ -463,57 +463,57 @@ class SunsynkPowerFlowCardVE extends LitElement {
       case 'float':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Float';
-        inverterStateColour = (use_victron === 'true') ? 'green' : '';
-        inverterStateMsg = (use_victron === 'true') ? 'Float' : '';
+        inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
+        inverterStateMsg = (use_victron === 'true') ? 'Float' : 'transparent';
         break;
       case '6':
       case 'storage':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Storage';
-        inverterStateColour = (use_victron === 'true') ? 'green' : '';
-        inverterStateMsg = (use_victron === 'true') ? 'Storage' : '';
+        inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
+        inverterStateMsg = (use_victron === 'true') ? 'Storage' : 'transparent';
         break;
       case '7':
       case 'equalize':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Equalize';
-        inverterStateColour = (use_victron === 'true') ? 'green' : '';
-        inverterStateMsg = (use_victron === 'true') ? 'Equalize' : '';
+        inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
+        inverterStateMsg = (use_victron === 'true') ? 'Equalize' : 'transparent';
         break;
       case '8':
       case 'passthru':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Passthru';
-        inverterStateColour = (use_victron === 'true') ? 'green' : '';
-        inverterStateMsg = (use_victron === 'true') ? 'Passthru' : '';
+        inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
+        inverterStateMsg = (use_victron === 'true') ? 'Passthru' : 'transparent';
         break;
       case '9':
       case 'inverting':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Inverting';
-        inverterStateColour = (use_victron === 'true') ? 'green' : '';
-        inverterStateMsg = (use_victron === 'true') ? 'Inverting' : '';
+        inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
+        inverterStateMsg = (use_victron === 'true') ? 'Inverting' : 'transparent';
         break;
       case '10':
       case 'power assist':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Power Assist';
-        inverterStateColour = (use_victron === 'true') ? 'green' : '';
-        inverterStateMsg = (use_victron === 'true') ? 'Power Assist' : '';
+        inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
+        inverterStateMsg = (use_victron === 'true') ? 'Power Assist' : 'transparent';
         break;
       case '11':
       case 'power supply':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Power Supply';
-        inverterStateColour = (use_victron === 'true') ? 'green' : '';
-        inverterStateMsg = (use_victron === 'true') ? 'Power Supply' : '';
+        inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
+        inverterStateMsg = (use_victron === 'true') ? 'Power Supply' : 'transparent';
         break;
       case '252':
-      case 'normal':
+      case 'ext. control':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Ext. Control';
-        inverterStateColour = (use_victron === 'true') ? 'green' : '';
-        inverterStateMsg = (use_victron === 'true') ? 'Ext. Control' : '';
+        inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
+        inverterStateMsg = (use_victron === 'true') ? 'Ext. Control' : 'transparent';
         break;
       default:
         if (config?.entities?.inverter_status_59 === 'none' || !config?.entities?.inverter_status_59) {
@@ -699,12 +699,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
             <text id="aux_load2" x="411" y="84" class="st3 st8" display="${show_aux === 'no' || additional_aux_load === 'no' || additional_aux_load === 'one'? 'none' : ''}" fill="${ aux_colour}" >${config?.load?.aux_load2_name ? `${config.load.aux_load2_name}` : '' }</text> 
             <text id="aux_load1_value" x="411" y="34" class="${font === 'no' ? 'st14' : 'st4'} st8" display="${show_aux === 'no' || additional_aux_load === 'no' ? 'none' : ''}" fill="${aux_colour}">${!isNaN(parseFloat(stateObj48.state)) ? parseFloat(stateObj48.state).toFixed(0) : '0'} W</text> 
             <text id="aux_load2_value" x="411" y="64" class="${font === 'no' ? 'st14' : 'st4'} st8" display="${show_aux === 'no' || additional_aux_load === 'no' || additional_aux_load === 'one' ? 'none' : ''}" fill="${aux_colour}">${!isNaN(parseFloat(stateObj49.state)) ? parseFloat(stateObj49.state).toFixed(0) : '0'} W</text> 
-               
-            <circle id="standby" cx="164" cy="304" r="3.5" fill="${inverterStateColour}"/>
-            
-           
-            
-
+   
             <circle id="standby" cx="153" cy="303" r="3.5" fill="${inverterStateColour}"/>
             
             <path id="es-load1" d="M 399 143 L 399 135" display="${show_aux === 'yes' ? '' : 'none'}" class="${additional_load === 'one' || additional_load === 'two' ? '' : 'st12'}" fill="none" stroke="${load_colour}" stroke-width="1" stroke-miterlimit="10"  pointer-events="stroke"/>
