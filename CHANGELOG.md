@@ -16,7 +16,8 @@ All notable changes to this project will be documented in this file.
 - Updated `Float` algorythm to use new `battery.tail_current`.
 
 ### Fixed
-- Replaced missing font CSS Style entry for font-size 10.
+- Replaced missing font CSS Style entry for font-size 10
+- Removed duplicate Inverter status indicator
 
 ### Removed
 
