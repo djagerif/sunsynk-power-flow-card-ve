@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 ## [1.0.1]
 ### Added
 - Added Battery `warn_colour` variable to the battery section. Allows colour change when SOC drops below Shutdown SOC
-- For Victron systems only. Added `battery.tail_current` variable to specify current(in A) that indicates Float when Inverter is in `Absorbtion` mode. Default `2`
+- For Victron systems only. Added `battery.tail_current` variable to specify current(in A) that indicates Float. Default `2`
 
 ### Breaking Changed
 
