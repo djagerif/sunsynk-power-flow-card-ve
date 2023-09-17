@@ -43,7 +43,6 @@ class SunsynkPowerFlowCardVE extends LitElement {
       }
 
       text { text-anchor: middle; alignment-baseline: middle; }
-
       .left-align {text-anchor: start;}
       .right-align {text-anchor: end;}
       .st1{fill:#ff9b30;}
@@ -198,10 +197,10 @@ class SunsynkPowerFlowCardVE extends LitElement {
     let inverter_current =  config?.entities?.inverter_current_164 ? stateObj7.state : 0;
     let battery_voltage =  config?.entities?.battery_voltage_183 ? stateObj11.state : 0;
     let temp_unit = config?.temp_unit || 'C';
-    let use_victron = config?.inverter?.use_victron || 'false';
+    let use_victron = (config?.inverter?.use_victron).toLowerCase() || 'false';
     let aux_entity = config?.entities?.aux_power_166 || 'none';
     let tail_a = config?.battery?.tail_current || '2';
-
+       
     let noness_dual_load = config?.grid?.additional_loads;
     if (noness_dual_load !== 'no' && noness_dual_load !== 'one' && noness_dual_load !== 'two') {
       noness_dual_load = 'no';
@@ -408,17 +407,19 @@ class SunsynkPowerFlowCardVE extends LitElement {
       duration += `${minutes} min`;
     }
     
-    let float = 'false'
-    if (use_victron === 'true') {
-      float = (-(parseFloat(tail_a)) <= parseFloat(stateObj35.state)) && (parseFloat(stateObj35.state) <= parseFloat(tail_a)) && (parseFloat(stateObj12.state) >= 99) && (parseInt(stateObj21.state) === 4 || (stateObj21.state).toLowerCase() === 'absorption') ? "True" : "False";
-    } else {
-      float = (-(parseFloat(tail_a)) <= parseFloat(stateObj35.state)) && (parseFloat(stateObj35.state) <= parseFloat(tail_a)) && (parseInt(stateObj12.state) >= 99) ? "True" : "False";
-    }
+    //let float = 'False';
+    //if (use_victron === 'true') {
+    //  float = ((((-1*(parseFloat(tail_a))) <= parseFloat(stateObj35.state)) && (parseFloat(stateObj35.state) <= parseFloat(tail_a)) && (parseFloat(stateObj12.state) >= 98)) && ((stateObj21.state).toLowerCase() === 'absorption' || (stateObj21.state).toLowerCase() === 'inverting' || (stateObj21.state).toLowerCase() === 'discharging')) ? 'True' : 'False';
+    //} else {
+    //  float = ((-1*(parseFloat(tail_a))) <= parseFloat(stateObj35.state)) && (parseFloat(stateObj35.state) <= parseFloat(tail_a)) && (parseInt(stateObj12.state) >= 99) ? 'True' : 'False';
+    //}
     //let float = (-2 <= parseInt(stateObj35.state)) && (parseInt(stateObj35.state) <= 2) && (parseInt(stateObj12.state) >= 99) ? "True" : "False";
     
+    let float = (-(parseFloat(tail_a)) <= parseFloat(stateObj35.state)) && (parseFloat(stateObj35.state) <= parseFloat(tail_a)) && (parseInt(stateObj12.state) >= 99) ? "True" : "False";
+    
     //Set Inverter Status Message and dot
-    let inverterStateColour = "";
-    let inverterStateMsg = "";
+    let inverterStateColour = '';
+    let inverterStateMsg = '';
 
     switch ((stateObj21.state).toLowerCase()) {
       case '0':
@@ -441,8 +442,8 @@ class SunsynkPowerFlowCardVE extends LitElement {
       case 'fault':
         //inverterStateColour = 'orange';
         //inverterStateMsg = 'Fault';  //'Normal';
-        inverterStateColour = (use_victron === 'true') ? 'orange' : 'green';
-        inverterStateMsg = (use_victron === 'true') ? 'Fault' : 'Normal';
+        inverterStateColour = (use_victron === 'true') ? 'green' : 'orange';
+        inverterStateMsg = (use_victron === 'true') ? 'Normal' : 'Fault';
         break;
       case '3':
       case 'alarm':
@@ -464,57 +465,67 @@ class SunsynkPowerFlowCardVE extends LitElement {
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Float';
         inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
-        inverterStateMsg = (use_victron === 'true') ? 'Float' : 'transparent';
+        inverterStateMsg = (use_victron === 'true') ? 'Float' : '';
         break;
       case '6':
       case 'storage':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Storage';
         inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
-        inverterStateMsg = (use_victron === 'true') ? 'Storage' : 'transparent';
+        inverterStateMsg = (use_victron === 'true') ? 'Storage' : '';
         break;
       case '7':
       case 'equalize':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Equalize';
         inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
-        inverterStateMsg = (use_victron === 'true') ? 'Equalize' : 'transparent';
+        inverterStateMsg = (use_victron === 'true') ? 'Equalize' : '';
         break;
       case '8':
       case 'passthru':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Passthru';
         inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
-        inverterStateMsg = (use_victron === 'true') ? 'Passthru' : 'transparent';
+        inverterStateMsg = (use_victron === 'true') ? 'Passthru' : '';
         break;
       case '9':
       case 'inverting':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Inverting';
         inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
-        inverterStateMsg = (use_victron === 'true') ? 'Inverting' : 'transparent';
+        inverterStateMsg = (use_victron === 'true') ? 'Inverting' : '';
         break;
       case '10':
       case 'power assist':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Power Assist';
         inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
-        inverterStateMsg = (use_victron === 'true') ? 'Power Assist' : 'transparent';
+        inverterStateMsg = (use_victron === 'true') ? 'Power Assist' : '';
         break;
       case '11':
       case 'power supply':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Power Supply';
         inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
-        inverterStateMsg = (use_victron === 'true') ? 'Power Supply' : 'transparent';
+        inverterStateMsg = (use_victron === 'true') ? 'Power Supply' : '';
         break;
       case '252':
       case 'ext. control':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Ext. Control';
         inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
-        inverterStateMsg = (use_victron === 'true') ? 'Ext. Control' : 'transparent';
+        inverterStateMsg = (use_victron === 'true') ? 'Ext. Control' : '';
         break;
+      case 'discharging':
+        // For use with Victron systems only.
+          inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
+          inverterStateMsg = (use_victron === 'true') ? 'Discharging' : '';
+          break;
+      case 'recharge':
+        // For use with Victron systems only.
+          inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
+          inverterStateMsg = (use_victron === 'true') ? 'Recharge' : '';
+          break;
       default:
         if (config?.entities?.inverter_status_59 === 'none' || !config?.entities?.inverter_status_59) {
           inverterStateColour = 'transparent';
@@ -670,10 +681,9 @@ class SunsynkPowerFlowCardVE extends LitElement {
             
             
             <text id="ess_load2" x="${additional_load === 'two' && show_aux === 'no' ? '431' : '418'}" y="${show_aux === 'no' ? '44' : '156'}" display="${additional_load === 'two' ? '' : 'none'}" class="st3" fill="${load_colour}">${!isNaN(parseFloat(stateObj45.state)) ? parseFloat(stateObj45.state).toFixed(0) : '0'} W</text>
-
             
 
-            <text id="daily_load_aux" x="${ additional_aux_load === 'two' ? '238' : '306'}" y="95" class="st3 left-align" fill="${load_showdaily === 'no' || show_aux === 'no' ? 'transparent' : `${load_colour}`}" >DAILY LOAD${config.entities.aux_power_166  === 'none' || aux_entity === 'none' ? '' : '(Incl. AUX)'}</text>
+            <text id="daily_load_aux" x="${ additional_aux_load === 'two' ? '238' : '306'}" y="95" class="st3 left-align" fill="${load_showdaily === 'no' || show_aux === 'no' ? 'transparent' : `${load_colour}`}" >DAILY LOAD${config.entities.aux_power_166 === 'none' || aux_entity === 'none' ? '' : '(Incl. AUX)'}</text>
             <text id="daily_load" x="${additional_load === 'no' ? '377' : '306'}" y="${additional_load === 'no' ? '71' : '93'}" class="st3 left-align" fill="${load_showdaily === 'no' || show_aux === 'yes' ? 'transparent' : `${load_colour}`}" >DAILY LOAD${config.entities.aux_power_166 === 'none' || aux_entity === 'none' ? '' : '(Incl. AUX)'}</text>
             <text id="daily_solar" x="43.5" y="29" class="st3 left-align" fill="${solar_showdaily === 'no' || config.show_solar === 'no' || remaining_solar != 'false' ? 'transparent' : `${solar_colour}`}" >DAILY SOLAR</text>
             <text id="remaining_solar" x="43.5" y="29" class="st3 left-align" fill="${solar_showdaily === 'no' || config.show_solar === 'no' || remaining_solar === 'false' ? 'transparent' : `${solar_colour}`}" >DAILY SOLAR / LEFT TODAY</text>
@@ -695,11 +705,13 @@ class SunsynkPowerFlowCardVE extends LitElement {
             <text id="ratiop_value" x="251" y="283" display="${useautarky === 'no' ? 'none' : ''}" class="${useautarky === 'power' ? 'st4 st8 left-align' : 'st12'}" fill="${inverter_colour}" >${Ratiop}%</text>
             <text id="autarky" x="212" y="295" display="${useautarky === 'no' ? 'none' : ''}" class="st3 left-align" fill="${inverter_colour}" >Autarky</text>
             <text id="ratio" x="251" y="295" display="${useautarky === 'no' ? 'none' : ''}" class="st3 left-align" fill="${inverter_colour}" >Ratio</text>
-            <text id="aux_load1" x="411" y="${additional_aux_load === 'one' ? '53' : '17'}" class="st3 st8" display="${show_aux === 'no' || additional_aux_load === 'no'  ? 'none' : ''}" fill="${aux_colour}" >${config?.load?.aux_load1_name ? `${config.load.aux_load1_name}` : '' }</text> 
-            <text id="aux_load2" x="411" y="84" class="st3 st8" display="${show_aux === 'no' || additional_aux_load === 'no' || additional_aux_load === 'one'? 'none' : ''}" fill="${ aux_colour}" >${config?.load?.aux_load2_name ? `${config.load.aux_load2_name}` : '' }</text> 
-            <text id="aux_load1_value" x="411" y="34" class="${font === 'no' ? 'st14' : 'st4'} st8" display="${show_aux === 'no' || additional_aux_load === 'no' ? 'none' : ''}" fill="${aux_colour}">${!isNaN(parseFloat(stateObj48.state)) ? parseFloat(stateObj48.state).toFixed(0) : '0'} W</text> 
-            <text id="aux_load2_value" x="411" y="64" class="${font === 'no' ? 'st14' : 'st4'} st8" display="${show_aux === 'no' || additional_aux_load === 'no' || additional_aux_load === 'one' ? 'none' : ''}" fill="${aux_colour}">${!isNaN(parseFloat(stateObj49.state)) ? parseFloat(stateObj49.state).toFixed(0) : '0'} W</text> 
-   
+            <text id="aux_load1" x="408" y="${additional_aux_load === 'one' ? '54' : '17'}" class="st3 st8" display="${show_aux === 'no' || additional_aux_load === 'no'  ? 'none' : ''}" fill="${ aux_status === 'on' || aux_status === '1' || aux_status.toLowerCase() === 'connected' ? `${aux_colour}` : `${aux_off_colour}`}" >${config?.load?.aux_load1_name ? `${config.load.aux_load1_name}` : '' }</text> 
+            
+            <text id="aux_load2" x="408" y="84" class="st3 st8" display="${show_aux === 'no' || additional_aux_load === 'no' || additional_aux_load === 'one'? 'none' : ''}" fill="${ aux_status === 'on' || aux_status === '1' || aux_status.toLowerCase() === 'connected' ? `${aux_colour}` : `${aux_off_colour}`}" >${config?.load?.aux_load2_name ? `${config.load.aux_load2_name}` : '' }</text> 
+            
+           
+            
+
             <circle id="standby" cx="153" cy="303" r="3.5" fill="${inverterStateColour}"/>
             
             <path id="es-load1" d="M 399 143 L 399 135" display="${show_aux === 'yes' ? '' : 'none'}" class="${additional_load === 'one' || additional_load === 'two' ? '' : 'st12'}" fill="none" stroke="${load_colour}" stroke-width="1" stroke-miterlimit="10"  pointer-events="stroke"/>
@@ -895,10 +907,9 @@ class SunsynkPowerFlowCardVE extends LitElement {
               <svg xmlns="http://www.w3.org/2000/svg" id="aux_ac" x="380" y="10" width="60" height="60" viewBox="0 0 24 24"><path class="${aux_type === 'aircon' ? '' : 'st12'}" display="${show_aux === 'no'  || additional_aux_load === 'one' || additional_aux_load === 'two' ? 'none' : ''}" fill="${ aux_status === 'on' || aux_status === '1' || aux_status.toLowerCase() === 'connected' ? `${aux_colour}` : `${aux_off_colour}`}" d="M6.59.66c2.34-1.81 4.88.4 5.45 3.84c.43 0 .85.12 1.23.34c.52-.6.98-1.42.8-2.34c-.42-2.15 1.99-3.89 4.28-.92c1.81 2.34-.4 4.88-3.85 5.45c0 .43-.11.86-.34 1.24c.6.51 1.42.97 2.34.79c2.13-.42 3.88 1.98.91 4.28c-2.34 1.81-4.88-.4-5.45-3.84c-.43 0-.85-.13-1.22-.35c-.52.6-.99 1.43-.81 2.35c.42 2.14-1.99 3.89-4.28.92c-1.82-2.35.4-4.89 3.85-5.45c0-.43.13-.85.35-1.23c-.6-.51-1.42-.98-2.35-.8c-2.13.42-3.88-1.98-.91-4.28M5 16h2a2 2 0 0 1 2 2v6H7v-2H5v2H3v-6a2 2 0 0 1 2-2m0 2v2h2v-2H5m7.93-2H15l-2.93 8H10l2.93-8M18 16h3v2h-3v4h3v2h-3a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2Z"/></svg>
               <svg xmlns="http://www.w3.org/2000/svg" id="aux_pump" x="380" y="15" width="60" height="70" viewBox="0 0 24 24"><path class="${aux_type === 'pump' ? '' : 'st12'}" display="${show_aux === 'no'  || additional_aux_load === 'one' || additional_aux_load === 'two' ? 'none' : ''}" fill="${ aux_status === 'on' || aux_status === '1' || aux_status.toLowerCase() === 'connected' ? `${aux_colour}` : `${aux_off_colour}`}" d="M3 17h4.1q-.425-.425-.787-.925T5.675 15H3v2Zm9 0q2.075 0 3.538-1.463T17 12q0-2.075-1.463-3.538T12 7Q9.925 7 8.462 8.463T7 12q0 2.075 1.463 3.538T12 17Zm6.325-8H21V7h-4.1q.425.425.788.925T18.325 9ZM1 20v-8h2v1h2.075q-.05-.25-.063-.488T5 12q0-2.925 2.038-4.963T12 5h9V4h2v8h-2v-1h-2.075q.05.25.063.488T19 12q0 2.925-2.038 4.963T12 19H3v1H1Zm2-3v-2v2Zm18-8V7v2Zm-9 3Zm0 3q-.825 0-1.413-.588T10 13q0-.575.238-1.137t.912-1.613L12 9l.85 1.25q.675 1.05.913 1.613T14 13q0 .825-.588 1.413T12 15Z"/></svg>
             
-              <g display="${show_aux === 'no'  || additional_aux_load === 'one' || additional_aux_load === 'two' ? 'none' : ''}" >
-                <foreignObject x="375" y="5" width="85" height="85" style="position: fixed; ">
-                  <body xmlns="http://www.w3.org/1999/xhtml" >
-                    <div style="position: fixed; ">
+              <g display="${show_aux === 'no'  || additional_aux_load === 'one' || additional_aux_load === 'two' ? 'none' : ''}">
+                <foreignObject x="375" y="5" width="85" height="85" style="position: fixed;">                  <body xmlns="http://www.w3.org/1999/xhtml" >
+                    <div style="position: fixed;">
                       <ha-icon icon="${aux_type}" class="${ aux_status === 'on' || aux_status === '1' || aux_status.toLowerCase() === 'connected' ? `aux-icon` : `aux-off-icon`}"></ha-icon>
                     </div>
                   </body>
@@ -906,21 +917,20 @@ class SunsynkPowerFlowCardVE extends LitElement {
               </g>
             </a>
 
-
-            <g display="${show_aux === 'no'  || additional_aux_load === 'no' ? 'none' : ''}" >
-                <foreignObject x="345" y="17" width="40" height="40" style="position: fixed; ">
+            <g display="${show_aux === 'no'  || additional_aux_load === 'no' ? 'none' : ''}">
+                <foreignObject x="345" y="17" width="40" height="40" style="position: fixed;">
                   <body xmlns="http://www.w3.org/1999/xhtml" >
-                    <div style="position: fixed; ">
+                    <div style="position: fixed;">
                       <ha-icon icon="${aux_load1_icon}" class="${ aux_status === 'on' || aux_status === '1' || aux_status.toLowerCase() === 'connected' ? `aux-small-icon` : `aux-small-off-icon`}"></ha-icon>
                     </div>
                   </body>
                 </foreignObject>
               </g>
 
-              <g display="${show_aux === 'no'  || additional_aux_load === 'one' || additional_aux_load === 'no' ? 'none' : ''}" >
-              <foreignObject x="345" y="52" width="40" height="40" style="position: fixed; ">
+              <g display="${show_aux === 'no'  || additional_aux_load === 'one' || additional_aux_load === 'no' ? 'none' : ''}">
+              <foreignObject x="345" y="52" width="40" height="40" style="position: fixed;">
                 <body xmlns="http://www.w3.org/1999/xhtml" >
-                  <div style="position: fixed; ">
+                  <div style="position: fixed;">
                     <ha-icon icon="${aux_load2_icon}" class="${ aux_status === 'on' || aux_status === '1' || aux_status.toLowerCase() === 'connected' ? `aux-small-icon` : `aux-small-off-icon`}"></ha-icon>
                   </div>
                 </body>
@@ -1146,7 +1156,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
               <text id="battery_temp_182" x="105.7" y="295" class="${config.entities.battery_temp_182 === 'none' ? 'st12' : 'st3 left-align'}" fill="${battery_colour}" display="${config?.entities?.battery_temp_182 ? '' : 'none'}" >${stateObj37.state ? stateObj37.state : ''}°${temp_unit}</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.radiator_temp_91)}>
-              <text id="ac_temp" x="${config?.solar?.mppts === 'four' ? "137" : "158"}"  y="${config?.solar?.mppts === 'four' ? "222" : "153"}" class="${config.entities.radiator_temp_91 === 'none' ? 'st12' : 'st3 left-align'}" fill="${inverter_colour}" display="${config?.entities?.radiator_temp_91 ? '' : 'none'}" >AC: ${stateObj39.state ? stateObj39.state : ''}°${temp_unit}</text>
+              <text id="ac_temp" x="${config?.solar?.mppts === 'four' ? "137" : "158"}"  y="${config?.solar?.mppts === 'four' ? "222" : "153"}" class="${config.entities.radiator_temp_91 === 'none' ? 'st12' : 'st3 left-align'}" fill="${inverter_colour}" display="${config?.entities?.radiator_temp_91 ? '' : 'none'}" >AC: ${stateObj39.state ? stateObj39.state : ''}°</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.dc_transformer_temp_90)}>
               <text id="dc_temp" x="${use_victron === 'true' ? '88' : '108'}" y="266" class="${config.entities.dc_transformer_temp_90 === 'none' ? 'st12' : 'st15 left-align'}" fill="${inverter_colour}" display="${config?.entities?.dc_transformer_temp_90 ? '' : 'none'}" >${use_victron === 'true' ? 'Min SOC' : 'DC'}: ${stateObj38.state ? Math.trunc(stateObj38.state) : ''}${use_victron === 'true' ? '%' : '°'+temp_unit}</text>
@@ -1387,10 +1397,10 @@ class SunsynkPowerFlowCardVE extends LitElement {
               <text id="battery_voltage_183" x="193" y="346" display="${config.entities.battery_voltage_183 === 'none' || !config.entities.battery_voltage_183 ? 'none' : ''}" fill=${battery_colour} class="${font === 'no' ? 'st14' : 'st4'} st8">${battery_voltage} V</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.battery_soc_184)}>
-              <text id="battery_soc_184" x="290" y="358" display="${config.entities.battery_soc_184 === 'none' ? 'none' : ''}" fill="${parseInt(stateObj12.state) >= parseInt(config.battery.shutdown_soc) ? battery_colour : battery_warn_colour}" class="st13 st8 left-align">${parseInt(stateObj12.state) ? parseInt(stateObj12.state) : '0'} %</text>
+              <text id="battery_soc_184" x="290" y="358" display="${config.entities.battery_soc_184 === 'none' ? 'none' : ''}" fill=${battery_colour} class="st13 st8 left-align">${parseInt(stateObj12.state) ? parseInt(stateObj12.state) : '0'} %</text>
             </a> 
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.battery_soc_184)}>
-              <text id="battery_soc_184" x="355" y="358" fill="${parseInt(stateObj12.state) >= parseInt(config.battery.shutdown_soc) ? battery_colour : battery_warn_colour}" class="st13 st8 left-align" display="${inverter_prog.show === 'no' || config.entities.battery_soc_184 === 'none' ? 'none' : ''}"> | ${inverter_prog.capacity ? inverter_prog.capacity : '0'} %</text>
+              <text id="battery_soc_184" x="355" y="358" fill=${battery_colour} class="st13 st8 left-align" display="${inverter_prog.show === 'no' || config.entities.battery_soc_184 === 'none' ? 'none' : ''}"> | ${inverter_prog.capacity ? inverter_prog.capacity : '0'} %</text>
             </a>  
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.battery_power_190)}>
               <text id="battery_power_190" x="193" y="386" display="${config.entities.battery_power_190 === 'none' ? 'none' : ''}" fill=${battery_colour} class="${font === 'no' ? 'st14' : 'st4'} st8">${battery_power < '0' ? battery_power *-1 : battery_power} W</text>
@@ -1429,7 +1439,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
               <text id="battery_temp_182" x="250" y="324.5" class="${config.entities.battery_temp_182 === 'none' ? 'st12' : 'st3 left-align'}" fill="${battery_colour}" display="${config?.entities?.battery_temp_182 ? '' : 'none'}" >${stateObj37.state ? stateObj37.state : ''}°${temp_unit}</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.radiator_temp_91)}>
-            <text id="ac_temp" x="173" y="168.2" class="${config.entities.radiator_temp_91 === 'none' ? 'st12' : 'st3 left-align'}" fill="${inverter_colour}" display="${config?.entities?.radiator_temp_91 ? '' : 'none'}" >AC: ${stateObj39.state ? stateObj39.state : ''}°${temp_unit}</text>
+            <text id="ac_temp" x="173" y="168.2" class="${config.entities.radiator_temp_91 === 'none' ? 'st12' : 'st3 left-align'}" fill="${inverter_colour}" display="${config?.entities?.radiator_temp_91 ? '' : 'none'}" >AC: ${stateObj39.state ? stateObj39.state : ''}°</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.dc_transformer_temp_90)}>
               <text id="dc_temp" x="${use_victron === 'true' ? '153' : '173'}" y="180.4" class="${config.entities.dc_transformer_temp_90 === 'none' ? 'st12' : 'st15 left-align'}" fill="${inverter_colour}" display="${config?.entities?.dc_transformer_temp_90 ? '' : 'none'}" >${use_victron === 'true' ? 'Min SOC' : 'DC'}: ${stateObj38.state ? Math.trunc(stateObj38.state) : ''}${use_victron === 'true' ? '%' : '°'+temp_unit}</text>
@@ -1493,14 +1503,14 @@ class SunsynkPowerFlowCardVE extends LitElement {
         if (config.battery.full_capacity < 80) {
           throw new Error('Full capacity needs to be between 80 and 100');
         }
+        if (config.battery.empty_capacity > 80) {
+          throw new Error('Empty capacity needs to be <= 80');
+        }
         if (config.battery.tail_current < 1) {
-          throw new Error('Tail Current needs to be >= 1');
+            throw new Error('Tail Current needs to be >= 1');
         }
         if (config.battery.tail_current > 20) {
           throw new Error('Tail Current needs to be <= 20');
-        }
-        if (config.battery.empty_capacity > 80) {
-          throw new Error('Empty capacity needs to be <= 80');
         }
         if (config.battery.show_daily === 'yes' && (!config.entities.day_battery_charge_70 || !config.entities.day_battery_discharge_71) ) {  
           throw Error('Please include the day_battery_charge_70 and day_battery_discharge_71 attributes and entity IDs');
