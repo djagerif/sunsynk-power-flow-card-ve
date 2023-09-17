@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - Development
 
+## [1.0.2]
+### Added
+
+### Breaking Changed
+
+### Changed
+
+### Fixed
+
+### Removed
+
+
+## [Released]
+
 ## [1.0.1]
 ### Added
 - Added Battery `warn_colour` variable to the battery section. Allows colour change when SOC drops below Shutdown SOC
