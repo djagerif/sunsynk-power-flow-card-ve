@@ -103,8 +103,6 @@ The card can be configured through the following attributes:
 ### Battery
 Note: This card will always display battery power as a positive number regardless of your sensor value. The animated dot will change direction depending on the charging or discharging state. The `invert_power` attribute can be used to reverse direction if needed by your sensor.
 
-Note: `tail_current` looks is only active when `use_victron` flag is set and works in conjunction with the Inverter `Absorbtion` state.
-
 | Attribute | Requirement |Default | Description |
 | --- | --- | --- |--- |
 |energy: | **Required** | `15960` | Total Battery Energy in Wh (e.g. 3 x 5.32kWh = 15960). If set to `hidden` the remaining battery runtime will be hidden|
@@ -117,7 +115,7 @@ Note: `tail_current` looks is only active when `use_victron` flag is set and wor
 |max_power: | Optional | `4500` | Maximun Power draw to calculate animation speed |
 |full_capacity: | Optional| `80` | If SOC >= to this value the Fully Charged battery image will be shown. Accepts any value between 80-100|
 |empty_capacity: | Optional | `30` | If SOC <= to this value the Empty battery image will be shown. Accepts any value between 1-80
-|tail_current: | Optional | `2` | Used with, or without, `use_victron` flag (Victron Inverter must also be in `Absorbtion` mode). Set battery current, in A, that indicates when to indicate Float. Accepts any value between 1-20
+|tail_current: | Optional | `2` | Used with, or without, `use_victron` flag (Victron Inverter must also be in `Absorbtion` or `Inverting` mode). Set battery current, in A, that indicates when to indicate Float. Accepts any value from 1 to 20
 
 ### Solar
 These attributes are only needed if `show_solar` is set to `yes` 
@@ -426,6 +424,7 @@ battery:
   full_capacity: 80
   empty_capacity: 30
   warn_color: 'Red'
+  tail_current: 2
 solar:
   colour: orange
   show_daily: 'yes'
