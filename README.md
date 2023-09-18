@@ -115,7 +115,7 @@ Note: This card will always display battery power as a positive number regardles
 |max_power: | Optional | `4500` | Maximun Power draw to calculate animation speed |
 |full_capacity: | Optional| `80` | If SOC >= to this value the Fully Charged battery image will be shown. Accepts any value between 80-100|
 |empty_capacity: | Optional | `30` | If SOC <= to this value the Empty battery image will be shown. Accepts any value between 1-80
-|tail_current: | Optional | `2` | Used with, or without, `use_victron` flag (Victron Inverter must also be in `Absorbtion` or `Inverting` mode). Set battery current, in A, that indicates when to indicate Float. Accepts any value from 1 to 20
+|tail_current: | Optional | `2` | Used with, or without, `use_victron` flag (Victron Inverters must also be in `Absorbtion` or `Inverting` mode). Set battery current, in A, that indicates when to indicate Float. Accepts any value from 1 to 20
 
 ### Solar
 These attributes are only needed if `show_solar` is set to `yes` 
