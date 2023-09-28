@@ -15,6 +15,7 @@ An animated Home Assistant card to emulate the power flow that's shown on the Su
 * Raised selectable `Battery Empty` restriction from `30%` to `80%` for Lead-Acid batteries.
 * Added `(Incl. AUX)` text to `DAILY LOAD` for clarity when AUX sensor is configured.
 * Aux Load Icons change colour according to the AUX connected state.
+* Added `auto_scale` feature as per source distribution.
 
 ## Features
 * Option to switch between two card styles: `lite` or `full`.
@@ -90,6 +91,7 @@ The card can be configured through the following attributes:
 |load: | Optional | See optional [Load](#load) attributes below|List of load attributes.  |
 |grid: | Optional | See optional [Grid](#grid) attributes below| List of grid attributes.  |
 |temp_unit: | Optional | `C` | Celsius(default) or Fahrenheit `C or F`  |
+|decimal_places: | Optional | 2 | Used with `auto_scale`. Number of decimal Default is 2. Values from 1 to 3  |
 |entities:|**Required** |See required [Entities](#entities) attributes below | List of sensor entities. |
 
 ### Inverter
@@ -99,6 +101,7 @@ The card can be configured through the following attributes:
 |colour:| Optional |`grey`| Changes the colour of the inverter. Hex codes (`'#66ff00'` etc) or names (`red`, `green`, `blue` etc) |
 |autarky:| Optional| `power`| Display autarky and ratio as a percentage using either realtime power or daily energy values. Set to `no` to hide (`energy/power/no`). <br />Autarky is the percentage of self sufficiency through Home Production. Ratio is the percentage of produced electricity used by the home. <br />It is calculated based on the formula below and borrowed from the [Power Distribution Card](https://github.com/JonahKr/power-distribution-card)  <br /><ul><li>Autarky in Percent = Home Production / Home Consumption </li><li>Ratio in Percent = Home Consumption / Home Production</li></ul>|
 |use_victron: | Optional | `false` | Enables Victron-specific inverter status messages. |
+|auto_scale: | Optional | false | Enables values to display in kW instead of `W` when above 999 W. Default `false` |
 
 ### Battery
 Note: This card will always display battery power as a positive number regardless of your sensor value. The animated dot will change direction depending on the charging or discharging state. The `invert_power` attribute can be used to reverse direction if needed by your sensor.
@@ -116,6 +119,7 @@ Note: This card will always display battery power as a positive number regardles
 |full_capacity: | Optional| `80` | If SOC >= to this value the Fully Charged battery image will be shown. Accepts any value between 80-100|
 |empty_capacity: | Optional | `30` | If SOC <= to this value the Empty battery image will be shown. Accepts any value between 1-80
 |tail_current: | Optional | `2` | Used with, or without, `use_victron` flag (Victron Inverters must also be in `Absorbtion` or `Inverting` mode). Set battery current, in A, that indicates when to indicate Float. Accepts any value from 1 to 20
+|auto_scale: | Optional | false | Enables values to display in kW instead of `W` when above 999 W. Default `false` |
 
 ### Solar
 These attributes are only needed if `show_solar` is set to `yes` 
@@ -130,6 +134,7 @@ These attributes are only needed if `show_solar` is set to `yes`
 |pv2_name: | Optional | `PV2` | Set the disaply name for MPPT2 |
 |pv3_name: | Optional | `PV3` | Set the disaply name for MPPT3 |
 |pv4_name: | Optional | `PV4` | Set the disaply name for MPPT4 |
+|auto_scale: | Optional | false | Enables values to display in kW instead of `W` when above 999 W. Default `false` |
 
 ### Load
 | Attribute | Requirement | Default | Description |
@@ -154,6 +159,7 @@ These attributes are only needed if `show_solar` is set to `yes`
 |load2_name: | Optional |  | Set the display name for the Essential Load 2
 |load1_icon: | Optional | none | Change the essential load 1 image using preset or any mdi icon e.g. `mdi:ev-station` Presets are: `boiler`, `pump`, `aircon`, `oven` |
 |load2_icon: | Optional | none | Change the essential load 2 image using preset or any mdi icon e.g. `mdi:ev-station` Presets are: `boiler`, `pump`, `aircon`, `oven` |
+|auto_scale: | Optional | false | Enables values to display in kW instead of `W` when above 999 W. Default `false` |
 
 ### Grid
 | Attribute | Requirement | Default | Description |
@@ -173,6 +179,7 @@ These attributes are only needed if `show_solar` is set to `yes`
 |invert_grid:| Optional | `no`| Set to `yes` if your sensor provides a negative number for Grid import and positive number for Grid export |
 |animation_speed: | Optional | `8` | Set slowest animation speed in seconds, depending on Power draw | 
 |max_power: | Optional | `8000` | Maximun Power draw to calculate animation speed |
+|auto_scale: | Optional | false | Enables values to display in kW instead of `W` when above 999 W. Default `false` |
 
 ### Entities
 Entity attributes below have been appended with the modbus register # e.g. `pv2_power_187` to indicate which Sunsynk register should be read when configuring your sensors. Replace the default sensors with your own specific sensor names. It is important that your sensors read the expected modbus register value. If you have missing sensors for any attribute set it to none i.e. `day_pv_energy_108: none`. This will hide the sensor data from the card. To display a placeholder with a default value of 0 set it to `zero` or any other value i.e. `solarday_108: zero`.

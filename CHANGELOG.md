@@ -6,12 +6,14 @@ All notable changes to this project will be documented in this file.
 
 ## [1.0.2]
 ### Added
+ - Added auto_scale as per source distribution.
 
 ### Breaking Changed
 
 ### Changed
 
 ### Fixed
+ - Moved a few icons for better visibility.
 
 ### Removed
 
