@@ -762,7 +762,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
                 <mpath xlink:href="#so-line"/>
               </animateMotion>
             </circle>
-            <path id="bat-line" d="M 155 280 L 105 280 Q 100 280 100 286 L 100 297" fill="none" stroke="${battery_colour}" stroke-width="1" stroke-miterlimit="10"  pointer-events="stroke"/>
+            <path id="bat-line" d="M 155 280 L 110 280 Q 100 280 100 287 L 100 297" fill="none" stroke="${battery_colour}" stroke-width="1" stroke-miterlimit="10"  pointer-events="stroke"/>
             <circle id="power-dot-charge" cx="0" cy="0" r="3" fill="${parseInt(battery_power) < 0 || parseInt(battery_power) === 0 ? 'transparent' : `${battery_colour}`}">
               <animateMotion dur="${battery_animation_speed}s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear">
                 <mpath xlink:href="#bat-line"/>
