@@ -432,7 +432,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
       case 'standby':
         inverterStateColour = 'blue';
         //inverterStateMsg = 'Off';  //'Standby';
-        inverterStateMsg = (use_victron === 'true') ? 'Off' : 'Standby';
+        inverterStateMsg = (use_victron === 'true') ? 'Off' : 'Standby';		//Victron = Off
         break;
       case '1':
       case 'selftest':
@@ -445,26 +445,33 @@ class SunsynkPowerFlowCardVE extends LitElement {
       case '2':
       case 'normal':
       case 'ok':
-      case 'fault':
+      //case 'fault': - VE
         //inverterStateColour = 'orange';
         //inverterStateMsg = 'Fault';  //'Normal';
-        inverterStateColour = (use_victron === 'true') ? 'green' : 'orange';
-        inverterStateMsg = (use_victron === 'true') ? 'Normal' : 'Fault';
+        inverterStateColour = 'green';
+        inverterStateMsg = 'Normal';
         break;
+	  case 'fault':
+		    inverterStateColour = 'red';
+        inverterStateMsg = 'Fault';
+		    break;
       case '3':
       case 'alarm':
-      case 'bulk':
+      case 'bulk': - VE
         inverterStateColour = (use_victron === 'true') ? 'green' : 'orange';
         inverterStateMsg = (use_victron === 'true') ? 'Bulk' : 'Alarm';
         //inverterStateMsg = 'Bulk';  //'Alarm';
         break;
       case '4':
-      case 'fault':
-      case 'absorption':
+      //case 'fault':
+		    inverterStateColour = (use_victron === 'true') ? 'green' : 'red';
+        inverterStateMsg = (use_victron === 'true') ? 'Absorption' : 'Fault';
+		    break;
+      case 'absorption': - VE
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Absorption';  //'Fault';
-        inverterStateColour = (use_victron === 'true') ? 'green' : 'red';
-        inverterStateMsg = (use_victron === 'true') ? 'Absorption' : 'Fault';
+        inverterStateColour = 'green';
+        inverterStateMsg = 'Absorption';
         break;
       case '5':
       case 'float':
