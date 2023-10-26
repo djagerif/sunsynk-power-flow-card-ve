@@ -420,6 +420,7 @@ inverter:
   colour: grey
   autarky: 'power'
   use_victron: 'false'
+  auto_scale: true
 battery:
   energy: 15960
   shutdown_soc: 20
@@ -432,6 +433,7 @@ battery:
   empty_capacity: 30
   warn_color: 'Red'
   tail_current: 2
+  auto_scale: true
 solar:
   colour: orange
   show_daily: 'yes'
@@ -442,6 +444,7 @@ solar:
   pv2_name: North
   pv3_name: East
   pv4_name: West
+  auto_scale: true
 load:
   colour: '#5fb6ad'
   show_daily: 'yes'
@@ -463,6 +466,7 @@ load:
   load2_name: Pool
   load1_icon: boiler
   load2_icon: mdi:pool
+  auto_scale: true
 grid:
   colour: '#5490c2'
   show_daily_buy: 'yes'
@@ -479,6 +483,7 @@ grid:
   load2_icon: mdi:ev-station
   animation_speed: 8
   max_power: 8000
+  auto_scale: true
 entities:
   use_timer_248: switch.sunsynk_toggle_system_timer
   priority_load_243: switch.sunsynk_toggle_priority_load

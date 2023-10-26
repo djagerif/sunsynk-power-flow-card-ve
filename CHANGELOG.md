@@ -4,12 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - Development
 
-## [1.0.2]
+## [1.1.0]
 ### Added
  - Added auto_scale as per source distribution.
 
 ### Breaking Changed
-
+ 
 ### Changed
 
 ### Fixed
