@@ -9,8 +9,7 @@ All notable changes to this project will be documented in this file.
  - Added auto_scale as per source distribution.
 
 ### Breaking Changed
- - Inverter states broken. Working on a solution...
-
+ 
 ### Changed
 
 ### Fixed
