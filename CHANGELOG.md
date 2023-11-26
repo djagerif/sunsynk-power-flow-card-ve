@@ -4,20 +4,6 @@ All notable changes to this project will be documented in this file.
 
 ## [Uneleased] - Development
 
-## [1.1.1]
-### Added
-
-### Breaking Changed
- 
-### Changed
-
-### Fixed
-
-### Removed
-
-
-## [Released]
-
 ## [1.3.0]
 ### Added
  
