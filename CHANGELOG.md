@@ -2,7 +2,21 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased] - Development
+## [Uneleased] - Development
+
+## [1.1.1]
+### Added
+
+### Breaking Changed
+ 
+### Changed
+
+### Fixed
+
+### Removed
+
+
+## [Released]
 
 ## [1.3.0]
 ### Added
