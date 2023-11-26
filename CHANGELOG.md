@@ -4,6 +4,34 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased] - Development
 
+## [1.3.0]
+### Added
+ 
+### Breaking Changed
+ 
+### Changed
+
+### Fixed
+ 
+### Removed
+
+
+## [Released]
+
+## [1.2.0]
+### Added
+ - Added `environment_temp` sensor to main screen. (No Unit Scale due to space limitation).
+
+### Breaking Changed
+ 
+### Changed
+ - Updated Battery Temperature locked to 1 decimal place.
+
+### Fixed
+
+
+### Removed
+
 ## [1.1.0]
 ### Added
  - Added auto_scale as per source distribution.
@@ -16,9 +44,6 @@ All notable changes to this project will be documented in this file.
  - Moved a few icons for better visibility.
 
 ### Removed
-
-
-## [Released]
 
 ## [1.0.1]
 ### Added

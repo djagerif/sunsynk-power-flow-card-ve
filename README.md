@@ -16,6 +16,7 @@ An animated Home Assistant card to emulate the power flow that's shown on the Su
 * Added `(Incl. AUX)` text to `DAILY LOAD` for clarity when AUX sensor is configured.
 * Aux Load Icons change colour according to the AUX connected state.
 * Added `auto_scale` feature as per source distribution.
+* Added `environment_temp` feature as per source distribution.
 
 ## Features
 * Option to switch between two card styles: `lite` or `full`.

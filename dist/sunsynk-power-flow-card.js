@@ -1,5 +1,5 @@
 import { LitElement, html, css, svg } from "https://unpkg.com/lit-element@2.0.1/lit-element.js?module";
-const SunsynkCardversion = '1.1.0';
+const SunsynkCardversion = '1.2.0';
 console.info(
   `%c SUNSYNK-POWER-FLOW-CARD-VE %c v${SunsynkCardversion} `,
   'color: orange; font-weight: bold; background: black',
@@ -176,6 +176,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
     const stateObj47 = this.hass.states[config.entities.aux_connected_status] || { state: 'on' };
     const stateObj48 = this.hass.states[config.entities.aux_load1] || { state: '0' };
     const stateObj49 = this.hass.states[config.entities.aux_load2] || { state: '0' };
+    const stateObj73 = this.hass.states[config.entities.environment_temp] || { state: '' };
 
     //Set defaults 
     let invert_aux = config?.load?.invert_aux || 'no';
@@ -362,7 +363,12 @@ class SunsynkPowerFlowCardVE extends LitElement {
         inverter_prog.entityID = entityID;
       }
     }
-    
+
+    function round(value, precision) {
+      var multiplier = Math.pow(10, precision || 0);
+      return Math.round(value * multiplier) / multiplier;
+    }
+
     //calculate battery capacity
     let battery_capacity = "";
     if (battery_power > 0) {
@@ -1176,13 +1182,16 @@ class SunsynkPowerFlowCardVE extends LitElement {
               <text id="pv4_current" x="142" y="150" class="st3 left-align" display="${config.show_solar === 'no' || !config.entities.pv4_current_116 || config.entities.pv4_current_116 === 'none' || config.solar.mppts === 'one' || config.solar.mppts === 'two' || config.solar.mppts === 'three' ? 'none' : ''}" fill="${solar_colour}" >${stateObj30.state ? stateObj30.state : '0'} A</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.battery_temp_182)}>
-              <text id="battery_temp_182" x="105.7" y="295" class="${config.entities.battery_temp_182 === 'none' ? 'st12' : 'st3 left-align'}" fill="${battery_colour}" display="${config?.entities?.battery_temp_182 ? '' : 'none'}" >${stateObj37.state ? stateObj37.state : ''}°${temp_unit}</text>
+              <text id="battery_temp_182" x="105.7" y="295" class="${config.entities.battery_temp_182 === 'none' ? 'st12' : 'st3 left-align'}" fill="${battery_colour}" display="${config?.entities?.battery_temp_182 ? '' : 'none'}" >${stateObj37.state ? round(stateObj37.state,1) : ''}°${temp_unit}</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.radiator_temp_91)}>
               <text id="ac_temp" x="${config?.solar?.mppts === 'four' ? "137" : "158"}"  y="${config?.solar?.mppts === 'four' ? "222" : "153"}" class="${config.entities.radiator_temp_91 === 'none' ? 'st12' : 'st3 left-align'}" fill="${inverter_colour}" display="${config?.entities?.radiator_temp_91 ? '' : 'none'}" >AC: ${stateObj39.state ? stateObj39.state : ''}°</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.dc_transformer_temp_90)}>
               <text id="dc_temp" x="${use_victron === 'true' ? '88' : '108'}" y="266" class="${config.entities.dc_transformer_temp_90 === 'none' ? 'st12' : 'st15 left-align'}" fill="${inverter_colour}" display="${config?.entities?.dc_transformer_temp_90 ? '' : 'none'}" >${use_victron === 'true' ? 'Min SOC' : 'DC'}: ${stateObj38.state ? Math.trunc(stateObj38.state) : ''}${use_victron === 'true' ? '%' : '°'+temp_unit}</text>
+            </a>
+            <a href="#" @click=${(e) => this.handlePopup(e, config.entities.environment_temp)}>
+              <text id="environ_temp" x="1" y="34" class="${config.entities?.environment_temp ? 'st3 left-align' : 'st12'}" fill="${solar_colour}" display="${!config.show_solar ? 'none' : ''}"> ${round(stateObj73.state,1)}°</text>
             </a>
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.energy_cost)}>
               <text id="energy_cost" x="427" y="257"  class="${config.entities.energy_cost === 'none' ? 'st12' : 'st3 left-align'}" fill="${grid_colour}" display="${config?.entities?.energy_cost ? '' : 'none'}" >${stateObj43.state ? stateObj43.state : ''}</text>
@@ -1355,6 +1364,9 @@ class SunsynkPowerFlowCardVE extends LitElement {
             </g>
             
             <svg xmlns="http://www.w3.org/2000/svg" id="sun" x="134" y="10" width="40" height="40" viewBox="0 0 24 24"><path class="${config.show_solar === 'no' ? 'st12' : ''}" fill="${solar_colour}" d="M11.45 2v3.55L15 3.77L11.45 2m-1 6L8 10.46l3.75 1.25L10.45 8M2 11.45L3.77 15l1.78-3.55H2M10 2H2v8c.57.17 1.17.25 1.77.25c3.58.01 6.49-2.9 6.5-6.5c-.01-.59-.1-1.18-.27-1.75m7 20v-6h-3l5-9v6h3l-5 9Z"/></svg>
+            <a href="#" @click=${(e) => this.handlePopup(e, config.entities.environment_temp)}>
+              <text id="environ_temp" x="135" y="44.5" class="${config.entities?.environment_temp ? 'st3 left-align' : 'st12'}" fill="${solar_colour}" display="${!config.show_solar ? 'none' : ''}"> ${round(stateObj73.state,1)}°</text>
+            </a>
             <svg xmlns="http://www.w3.org/2000/svg" id="bat-high" x="212.5" y="325.5" width="78.75" height="78.75" preserveAspectRatio="none" opacity="${parseInt(stateObj12.state) >= `${bat_full}` ? '1' : '0'}" viewBox="0 0 24 24"> <path fill="${battery_colour}" d="M 12 20 H 4 V 6 h 8 L 12 20 m 0.67 -16 H 11 V 2 H 5 v 2 H 3.33 C 2.6 4 2 4.6 2 5.33 v 15.34 C 2 21.4 2.6 22 3.33 22 h 9.34 c 0.74 0 1.33 -0.59 1.33 -1.33 V 5.33 C 14 4.6 13.4 4 12.67 4 M 11 16 H 5 v 3 h 6 v -3 m 0 -9 H 5 v 3 h 6 V 7 m 0 4.5 H 5 v 3 h 6 v -3 h -3 h 3"/></svg>
             <svg xmlns="http://www.w3.org/2000/svg" id="bat-med" x="212.5" y="325.5" width="78.75" height="78.75" preserveAspectRatio="none" opacity="${parseInt(stateObj12.state) >= 50 && parseInt(stateObj12.state) < `${bat_full}` ? '1' : '0'}" viewBox="0 0 24 24"><path fill="${battery_colour}" d="M 12 20 H 4 V 6 h 8 L 12 20 m 0.67 -16 H 11 V 2 H 5 v 2 H 3.33 C 2.6 4 2 4.6 2 5.33 v 15.34 C 2 21.4 2.6 22 3.33 22 h 9.34 c 0.74 0 1.33 -0.59 1.33 -1.33 V 5.33 C 14 4.6 13.4 4 12.67 4 M 11 16 H 5 v 3 h 6 v -3 m 0 -4.5 H 5 v 3 h 6 v -3 h -3 h 3"/></svg>
             <svg xmlns="http://www.w3.org/2000/svg" id="bat-low" x="212.5" y="325.5" width="78.75" height="78.75" preserveAspectRatio="none" opacity="${parseInt(stateObj12.state) > `${bat_empty}` && parseInt(stateObj12.state) <= 49 ? '1' : '0'}" viewBox="0 0 24 24"><path fill="${battery_colour}" d="M 12 20 H 4 V 6 h 8 L 12 6 L 12 20 m 0.67 -15.999 H 11 V 2 H 5 v 2 H 3.33 C 2.6 4 2 4.6 2 5.33 v 15.34 C 2 21.4 2.6 22 3.33 22 h 9.34 c 0.74 0 1.33 -0.59 1.33 -1.33 V 5.33 C 14 4.6 13.4 4 12.67 4 M 11 16 H 5 v 3 h 6 v -3"/></svg>
