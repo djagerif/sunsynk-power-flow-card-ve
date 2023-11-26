@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 ### Breaking Changed
  
 ### Changed
+ - kWh display values rounded to 1 decimal place, if exist, otherwise to integer.
 
 ### Fixed
  
