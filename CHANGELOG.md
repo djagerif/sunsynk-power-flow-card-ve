@@ -2,7 +2,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Uneleased] - Development
+## [Unreleased] - Development
 
 ## [1.3.0]
 ### Added
