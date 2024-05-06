@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
  
 ### Changed
  - kWh display values rounded to 1 decimal place, if exist, otherwise to integer.
+ - Remove <space> from battery SOC % display.
 
 ### Fixed
  
