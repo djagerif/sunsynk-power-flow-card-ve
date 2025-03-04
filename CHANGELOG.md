@@ -1,10 +1,15 @@
+## [1.4.0]
+### Added
+ - Add auto_scale to AUX loads.
+ 
+### Breaking Changed
+ 
+### Changed
+ 
+### Fixed
+ 
+### Removed
 
-# Changelog
-All notable changes to this project will be documented in this file.
-
-## [Uneleased] - Development
-
-## [Released]
 
 ## [1.3.0]
 ### Added
