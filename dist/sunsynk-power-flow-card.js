@@ -76,7 +76,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
       temp_unit: 'C',
       battery: {
         energy: 15960,
-        shutdown_soc: 20,
+        //shutdown_soc: 20,
         show_daily: 'yes',
       },
       solar: {        
@@ -106,6 +106,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
         battery_soc_184: 'sensor.sunsynk_battery_soc',
         battery_power_190: 'sensor.sunsynk_battery_power',
         battery_current_191: 'sensor.sunsynk_battery_current',
+        battery_shutdown_soc: 'none',
         grid_power_169: 'sensor.sunsynk_grid_power',
         day_grid_import_76: 'sensor.sunsynk_day_grid_import',
         day_grid_export_77: 'sensor.sunsynk_day_grid_export',
@@ -180,6 +181,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
 
     //Set defaults 
     let invert_aux = config?.load?.invert_aux || 'no';
+    let shutdown_soc = config?.battery?.shutdown_soc || 22;
     let aux_power = (invert_aux === 'yes') ? parseInt(stateObj24.state) * -1 : parseInt(stateObj24.state);
     let invert_grid = config?.grid?.invert_grid || 'no';
     let grid_power = (invert_grid === 'yes') ? parseInt(stateObj15.state) * -1 : parseInt(stateObj15.state);
@@ -1540,9 +1542,9 @@ class SunsynkPowerFlowCardVE extends LitElement {
         if (!config.battery.energy) {
           throw new Error('Please include the battery energy attribute and value in Wh e.g. 5.32 Battery energy: 5320');
         }
-        if (!config.battery.shutdown_soc) {
-          throw new Error('Please include the battery shutdown_soc attribate and value e.g shutdown_soc: 20');
-        }
+        // if (!config.battery.shutdown_soc) {
+        //  throw new Error('Please include the battery shutdown_soc attribate and value e.g shutdown_soc: 20');
+        //}
         if (config.battery.full_capacity < 80) {
           throw new Error('Full capacity needs to be between 80 and 100');
         }
