@@ -1072,11 +1072,23 @@ class SunsynkPowerFlowCardVE extends LitElement {
             </a>
             
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.aux_load1)}>
-            <text id="aux_load1_value" x="411" y="36" class="${font === 'no' ? 'st14' : 'st4'} st8" display="${config.show_aux === 'no'  ? 'none' : ''}" fill="${aux_colour}" >${(parseFloat(stateObj48.state).toFixed(0)) ? (load_auto_scale ? yn(parseFloat(stateObj48.state).toFixed(0),dp): parseFloat(stateObj48.state).toFixed(0) + ' W') : '0 W'} </text>
+              <text id="aux_load1_value" x="411" y="36" class="${font === 'no' ? 'st14' : 'st4'} st8" 
+			          display="${show_aux === 'no' || additional_aux_load === 'no' ? 'none' : ''}" 
+			          fill="${ aux_status === 'on' || aux_status === '1' || aux_status.toLowerCase() === 'connected' ? 
+                      `${aux_colour}` : 
+					            `${aux_off_colour}`}" > ${!isNaN(parseFloat(stateObj48.state)) ? 
+                        (load_auto_scale ? yn(parseFloat(stateObj48.state).toFixed(0), dp) : parseFloat(stateObj48.state).toFixed(0) + ' W') : '0'}
+			        </text> 
             </a>
-           
+
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.aux_load2)}>
-            <text id="aux_load2_value" x="411" y="66" class="${font === 'no' ? 'st14' : 'st4'} st8" display="${config.show_aux === 'no'  ? 'none' : ''}" fill="${aux_colour}" >${(parseFloat(stateObj49.state).toFixed(0)) ? (load_auto_scale ? yn(parseFloat(stateObj49.state).toFixed(0),dp): parseFloat(stateObj49.state).toFixed(0) + ' W') : '0 W'} </text>
+              <text id="aux_load2_value" x="411" y="66" class="${font === 'no' ? 'st14' : 'st4'} st8" 
+			          display="${show_aux === 'no' || additional_aux_load === 'no' || additional_aux_load === 'one' ? 'none' : ''}" 
+			          fill="${ aux_status === 'on' || aux_status === '1' || aux_status.toLowerCase() === 'connected' ? 
+                      `${aux_colour}` : 
+					            `${aux_off_colour}`}" > ${!isNaN(parseFloat(stateObj49.state)) ? 
+                        (load_auto_scale ? yn(parseFloat(stateObj49.state).toFixed(0), dp) : parseFloat(stateObj49.state).toFixed(0) + ' W') : '0'}
+              </text> 
             </a>
 
             <a href="#" @click=${(e) => this.handlePopup(e, config.entities.day_battery_charge_70)}>
