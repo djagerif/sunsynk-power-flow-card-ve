@@ -1,3 +1,16 @@
+## [1.4.1]
+### Added
+ 
+### Breaking Changed
+ 
+### Changed
+ - Updated LITElement dependancy URL as the old one seems unstable.
+ 
+### Fixed
+ 
+### Removed
+
+
 ## [1.4.0]
 ### Added
  - Add auto_scale to AUX and Non-Essential loads.
