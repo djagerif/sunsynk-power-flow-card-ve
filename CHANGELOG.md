@@ -1,3 +1,16 @@
+## [1.4.2]
+### Added
+ 
+### Breaking Changed
+ 
+### Changed
+ - Updated LITElement to load from local file.
+ 
+### Fixed
+ 
+### Removed
+
+
 ## [1.4.1]
 ### Added
  
