@@ -1,6 +1,7 @@
 //import { LitElement, html, css, svg } from "https://unpkg.com/lit-element@2.0.1/lit-element.js?module";
-import { LitElement, html, css, svg } from "https://cdn.jsdelivr.net/npm/lit-element@2.4.0/+esm?module";
-const SunsynkCardversion = '1.4.1';
+//import { LitElement, html, css, svg } from "https://cdn.jsdelivr.net/npm/lit-element@2.4.0/+esm?module";
+import { LitElement, html, css, svg } from "./lit-core.min.js";
+const SunsynkCardversion = '1.4.2';
 console.info(
   `%c SUNSYNK-POWER-FLOW-CARD-VE %c v${SunsynkCardversion} `,
   'color: orange; font-weight: bold; background: black',
