@@ -547,15 +547,30 @@ class SunsynkPowerFlowCardVE extends LitElement {
         inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
         inverterStateMsg = (use_victron === 'true') ? 'Ext. Control' : '';
         break;
+      case '256':
       case 'discharging':
         // For use with Victron systems only.
           inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
           inverterStateMsg = (use_victron === 'true') ? 'Discharging' : '';
           break;
+      case '244':
+      case '257':
+      case 'sustain':
+        // For use with Victron systems only.
+          inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
+          inverterStateMsg = (use_victron === 'true') ? 'Sustain' : '';
+          break;
+      case '258':
       case 'recharge':
         // For use with Victron systems only.
           inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
           inverterStateMsg = (use_victron === 'true') ? 'Recharge' : '';
+          break;
+      case '259':
+      case 'scheduled recharge':
+        // For use with Victron systems only.
+          inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
+          inverterStateMsg = (use_victron === 'true') ? 'Scheduled Recharge' : '';
           break;
       default:
         if (config?.entities?.inverter_status_59 === 'none' || !config?.entities?.inverter_status_59) {
