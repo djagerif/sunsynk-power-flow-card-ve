@@ -1,7 +1,8 @@
 //import { LitElement, html, css, svg } from "https://unpkg.com/lit-element@2.0.1/lit-element.js?module";
 //import { LitElement, html, css, svg } from "https://cdn.jsdelivr.net/npm/lit-element@2.4.0/+esm?module";
 import { LitElement, html, css, svg } from "./lit-core.min.js";
-const SunsynkCardversion = '1.4.2';
+
+const SunsynkCardversion = '1.5.0';
 console.info(
   `%c SUNSYNK-POWER-FLOW-CARD-VE %c v${SunsynkCardversion} `,
   'color: orange; font-weight: bold; background: black',
@@ -128,6 +129,29 @@ class SunsynkPowerFlowCardVE extends LitElement {
     };
   }
 
+  updateCirclePosition() {
+    setTimeout(() => {
+      const textEl = this.shadowRoot?.getElementById("inverterStateMsgId");
+      const circleEl = this.shadowRoot?.getElementById("standby");
+  
+      if (textEl && circleEl) {
+        try {
+          const bbox = textEl.getBBox();
+          const textX = parseFloat(textEl.getAttribute("x")) || 185;
+          const circleX = textX - (bbox.width / 2) - 7;
+  
+          //console.log(`Calculated width: ${bbox.width}, new cx: ${circleX}`);
+          circleEl.setAttribute("cx", circleX);
+        } catch (err) {
+          //console.warn("Error calculating bbox:", err);
+        }
+      //} else {
+      //  console.warn("Text or circle element not found");
+      }
+    }, 50);  // Delay ensures DOM is ready
+  }
+
+  
   render() {
     const config = this._config;
     const stateObj = this.hass.states[config.entities.day_battery_discharge_71] || { state: '0' };
@@ -582,6 +606,8 @@ class SunsynkPowerFlowCardVE extends LitElement {
         }
         break;
     }
+    
+    this.updateComplete?.then(() => this.updateCirclePosition());
 
     //Autarky in Percent = Home Production / Home Consumption
     //Ratio in Percent = Home Consumption / Home Production
@@ -688,6 +714,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
           --mdc-icon-size: 70px;
         }
         </style>
+
         <div class="container card">
         
           <svg viewBox="-0.5 -0.5 457 383" preserveAspectRatio="xMidYMid meet" height="${panel === 'no' ? `${height}` : '100%'}" width="100%" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
@@ -721,13 +748,12 @@ class SunsynkPowerFlowCardVE extends LitElement {
             <text x="0" y="139" class="st3 st8 left-align" display="${config.show_solar === 'no' || config.solar.mppts === 'one' || config.solar.mppts === 'two'  ? 'none' : ''}" fill="${solar_colour}">${config?.solar?.pv3_name ? `${config.solar.pv3_name}`: 'PV3' }</text>
             <text x="99" y="139" class="st3 st8 left-align" display="${config.show_solar === 'no' || config.solar.mppts === 'one' || config.solar.mppts === 'two' || config.solar.mppts === 'three' ? 'none' : ''}" fill="${solar_colour}">${config?.solar?.pv4_name ? `${config.solar.pv4_name}`: 'PV4' }</text>
             <text x="420" y="377" class="st3 st8" fill="${grid_colour}">Grid</text>
-            <text x="185" y="306" class="st3" fill="${inverter_colour}">${inverterStateMsg}</text>
+			
+            <text id="inverterStateMsgId" x="185" y="306" class="st3" fill="${inverter_colour}">
+				      ${inverterStateMsg}
+			      </text>
             <text x="415" y="159" class="st3 st8" display="${(additional_load === 'one' || additional_load === 'two') && show_aux === 'yes' ? 'none' : ''}" fill="${load_colour}">Essential</text>
             <text id="ess_load" x="400" y="132" class="st3 st8" display="${additional_load === 'no' || show_aux === 'no'? 'none' : ''}" fill="${load_colour}">Essential</text>
-           
-
-            
-
             <text id="daily_load_aux" x="${ additional_aux_load === 'two' ? '238' : '306'}" y="95" class="st3 left-align" fill="${load_showdaily === 'no' || show_aux === 'no' ? 'transparent' : `${load_colour}`}" >DAILY LOAD${config.entities.aux_power_166 === 'none' || aux_entity === 'none' ? '' : '(Incl. AUX)'}</text>
             <text id="daily_load" x="${additional_load === 'no' ? '377' : '306'}" y="${additional_load === 'no' ? '71' : '93'}" class="st3 left-align" fill="${load_showdaily === 'no' || show_aux === 'yes' ? 'transparent' : `${load_colour}`}" >DAILY LOAD${config.entities.aux_power_166 === 'none' || aux_entity === 'none' ? '' : '(Incl. AUX)'}</text>
             <text id="daily_solar" x="43.5" y="29" class="st3 left-align" fill="${solar_showdaily === 'no' || config.show_solar === 'no' || remaining_solar != 'false' ? 'transparent' : `${solar_colour}`}" >DAILY SOLAR</text>
@@ -742,7 +768,6 @@ class SunsynkPowerFlowCardVE extends LitElement {
             <text id="noness2" x="321"" y="338" class="st3 st8" display="${grid_show_noness === 'no' || noness_dual_load === 'no' || noness_dual_load === 'one' ? 'none' : ''}" fill="${grid_colour}">${config?.grid?.load1_name ? `${config.grid.load1_name}` : '' }</text>
             <text id="noness2" x="358" y="338" class="st3 st8" display="${grid_show_noness === 'no' || noness_dual_load === 'no'|| noness_dual_load === 'one' ? 'none' : ''}" fill="${grid_colour}">${config?.grid?.load2_name ? `${config.grid.load2_name}` : ''  }</text>
             
-            
             <text id="autarkye_value" x="212" y="283" display="${useautarky === 'no' ? 'none' : ''}" class="${useautarky === 'energy' ? 'st4 st8 left-align' : 'st12'}" fill="${inverter_colour}" >${Autarky}%</text>
             <text id="ratioe_value" x="251" y="283" display="${useautarky === 'no' ? 'none' : ''}" class="${useautarky === 'energy' ? 'st4 st8 left-align' : 'st12'}" fill="${inverter_colour}" >${Ratio}%</text>
             <text id="autarkyp_value" x="212" y="283" display="${useautarky === 'no' ? 'none' : ''}" class="${useautarky === 'power' ? 'st4 st8 left-align' : 'st12'}" fill="${inverter_colour}" >${Autarkyp}%</text>
@@ -752,9 +777,9 @@ class SunsynkPowerFlowCardVE extends LitElement {
             
             <text id="aux_load1" x="408" y="${additional_aux_load === 'one' ? '54' : '17'}" class="st3 st8" display="${show_aux === 'no' || additional_aux_load === 'no'  ? 'none' : ''}" fill="${ aux_status === 'on' || aux_status === '1' || aux_status.toLowerCase() === 'connected' ? `${aux_colour}` : `${aux_off_colour}`}" >${config?.load?.aux_load1_name ? `${config.load.aux_load1_name}` : '' }</text> 
             <text id="aux_load2" x="408" y="84" class="st3 st8" display="${show_aux === 'no' || additional_aux_load === 'no' || additional_aux_load === 'one'? 'none' : ''}" fill="${ aux_status === 'on' || aux_status === '1' || aux_status.toLowerCase() === 'connected' ? `${aux_colour}` : `${aux_off_colour}`}" >${config?.load?.aux_load2_name ? `${config.load.aux_load2_name}` : '' }</text> 
-
-            <circle id="standby" cx="153" cy="303" r="3.5" fill="${inverterStateColour}"/>
             
+            <circle id="standby" cx="153" cy="303" r="3.5" fill="${inverterStateColour}"/>
+			
             <path id="es-load1" d="M 399 143 L 399 135" display="${show_aux === 'yes' ? '' : 'none'}" class="${additional_load === 'one' || additional_load === 'two' ? '' : 'st12'}" fill="none" stroke="${load_colour}" stroke-width="1" stroke-miterlimit="10"  pointer-events="stroke"/>
             <path id="es-load1" d="M 412 80 L 412 60" display="${show_aux === 'no' ? '' : 'none'}" class="${additional_load === 'one'  ? '' : 'st12'}" fill="none" stroke="${load_colour}" stroke-width="1" stroke-miterlimit="10"  pointer-events="stroke"/>
             <path id="es-load2" d="M 412 80 L 412 53" display="${show_aux === 'no' ? '' : 'none'}" class="${additional_load === 'two'  ? '' : 'st12'}" fill="none" stroke="${load_colour}" stroke-width="1" stroke-miterlimit="10"  pointer-events="stroke"/>
@@ -1611,7 +1636,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
       `;
     }
   }
-
+  
   setConfig(config) {
     if (!config.cardstyle) {
       throw Error('Please include the cardstyle attribute and value; lite, simple or full e.g. cardstyle: simple');
@@ -1709,7 +1734,6 @@ class SunsynkPowerFlowCardVE extends LitElement {
       }
     }
   }
-
 
   getCardSize() {
     return 2;
