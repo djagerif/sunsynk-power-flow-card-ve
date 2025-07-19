@@ -2,7 +2,7 @@
 //import { LitElement, html, css, svg } from "https://cdn.jsdelivr.net/npm/lit-element@2.4.0/+esm?module";
 import { LitElement, html, css, svg } from "./lit-core.min.js";
 
-const SunsynkCardversion = '1.5.0';
+const SunsynkCardversion = '1.5.1';
 console.info(
   `%c SUNSYNK-POWER-FLOW-CARD-VE %c v${SunsynkCardversion} `,
   'color: orange; font-weight: bold; background: black',
@@ -566,6 +566,7 @@ class SunsynkPowerFlowCardVE extends LitElement {
         break;
       case '252':
       case 'ext. control':
+      case 'external control':
         //inverterStateColour = 'green';
         //inverterStateMsg = 'Ext. Control';
         inverterStateColour = (use_victron === 'true') ? 'green' : 'transparent';
