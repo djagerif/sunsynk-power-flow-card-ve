@@ -6,7 +6,25 @@
  
 ### Changed
 
+### Fixed
+ 
+### Removed
 
+
+## [1.5.0]
+### Added
+ - Add Inverter Status circle dynamic position depending on status message length.
+    
+### Breaking Changed
+ 
+### Changed
+ 
+### Fixed
+ 
+### Removed
+
+
+## [1.4.2]
 ### Added
  
 ### Breaking Changed
