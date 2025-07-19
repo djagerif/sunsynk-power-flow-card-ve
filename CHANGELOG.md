@@ -1,4 +1,12 @@
-## [1.4.2]
+## [1.5.1]
+### Added
+ - Add 'External Control' to inverter status.
+ 
+### Breaking Changed
+ 
+### Changed
+
+
 ### Added
  
 ### Breaking Changed
